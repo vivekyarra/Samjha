@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      SAMJHA_SECRET: ci-secret-for-signing-session-cookies
+      NEXT_PUBLIC_APP_URL: http://localhost:3000
+      SAMJHA_OFFLINE: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm install --no-audit --no-fund
+      - name: Lint
+        run: npx eslint src --quiet
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Unit tests
+        run: |
+          for f in src/lib/intent/intent.test.ts src/lib/mastery/rules.test.ts src/lib/nudges/rules.test.ts \
+                   src/lib/class/aggregate.test.ts src/lib/exports/exports.test.ts src/lib/exports/integration.test.ts \
+                   eval/samples.test.ts; do
+            echo "== $f"; npx tsx --conditions=react-server "$f"
+          done
+      - name: Build
+        run: npm run build
+      - name: End-to-end (215 API checks)
+        run: |
+          npm start -- -p 3000 > server.log 2>&1 &
+          for i in $(seq 1 60); do curl -sf http://localhost:3000 > /dev/null && break; sleep 1; done
+          npm run e2e
+      - name: Server log
+        if: failure()
+        run: tail -100 server.log
