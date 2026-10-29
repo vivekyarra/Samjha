@@ -1,0 +1,77 @@
+{
+  "subject": "Intro to Machine Learning",
+  "topics": [
+    {
+      "id": "gd",
+      "name": "Gradient Descent",
+      "claims": [
+        { "id": "gd1", "page": 12, "text": "Gradient descent updates the parameters in the direction opposite to the gradient of the loss." },
+        { "id": "gd2", "page": 12, "text": "The learning rate controls the size of each update step." },
+        { "id": "gd3", "page": 13, "text": "If the learning rate is too large, the updates can overshoot the minimum and diverge." },
+        { "id": "gd4", "page": 13, "text": "If the learning rate is too small, training converges very slowly." },
+        { "id": "gd5", "page": 14, "text": "Stochastic gradient descent estimates the gradient from a small random mini-batch of data at each step." }
+      ],
+      "notes": [
+        { "page": 12, "text": "Gradient descent is an iterative optimisation method. The gradient of the loss points in the direction of steepest increase, so each step moves the parameters in the opposite direction: w = w - lr * grad. The learning rate sets how big each step is." },
+        { "page": 13, "text": "Choosing the learning rate matters. A learning rate that is too large makes the updates overshoot the minimum, so the loss oscillates or diverges. A learning rate that is too small makes training converge very slowly." },
+        { "page": 14, "text": "Full-batch gradient descent computes the gradient on the entire dataset, which is expensive. Stochastic gradient descent uses a small random mini-batch at each step to estimate the gradient; the estimate is noisy but much cheaper." }
+      ]
+    },
+    {
+      "id": "bp",
+      "name": "Backpropagation",
+      "claims": [
+        { "id": "bp1", "page": 18, "text": "Backpropagation computes the gradient of the loss with respect to every weight in the network." },
+        { "id": "bp2", "page": 18, "text": "Gradients are computed from the output layer backward to the input layer using the chain rule." },
+        { "id": "bp3", "page": 19, "text": "A forward pass first computes and stores the activations of every layer." },
+        { "id": "bp4", "page": 19, "text": "The gradients from backpropagation are then used by gradient descent to update the weights." }
+      ],
+      "notes": [
+        { "page": 18, "text": "Backpropagation is an efficient way to get the gradient of the loss with respect to every weight. It starts at the output layer and moves backward towards the input, applying the chain rule at each layer." },
+        { "page": 19, "text": "Before the backward pass, a forward pass runs the input through the network and stores each layer's activations, because the backward pass needs them. Backpropagation only computes gradients; an optimiser such as gradient descent then uses them to update the weights." }
+      ]
+    },
+    {
+      "id": "cr",
+      "name": "Chain rule",
+      "claims": [
+        { "id": "cr1", "page": 8, "text": "The chain rule gives the derivative of a composite function as the product of the derivatives of its parts." },
+        { "id": "cr2", "page": 8, "text": "For y = f(g(x)), the derivative is dy/dx = f'(g(x)) · g'(x)." },
+        { "id": "cr3", "page": 9, "text": "In a neural network, the chain rule lets us multiply local gradients layer by layer." }
+      ],
+      "notes": [
+        { "page": 8, "text": "The chain rule differentiates composite functions. If y = f(g(x)) then dy/dx = f'(g(x)) * g'(x): the derivative of the outer function evaluated at the inner function, times the derivative of the inner function. The derivatives are multiplied, not added." },
+        { "page": 9, "text": "A neural network is a long composition of functions, one per layer. During backpropagation the chain rule multiplies the local gradient of each layer, layer by layer, to get the gradient for earlier layers." }
+      ]
+    },
+    {
+      "id": "of",
+      "name": "Overfitting",
+      "claims": [
+        { "id": "of1", "page": 22, "text": "Overfitting happens when a model learns the noise in the training data instead of the general pattern." },
+        { "id": "of2", "page": 22, "text": "An overfit model has low training error but high validation error." },
+        { "id": "of3", "page": 23, "text": "Regularization such as L2 weight decay or dropout reduces overfitting." },
+        { "id": "of4", "page": 23, "text": "More training data or early stopping also helps reduce overfitting." },
+        { "id": "of5", "page": 22, "text": "Overfitting is more likely when the model is too complex for the amount of data." }
+      ],
+      "notes": [
+        { "page": 22, "text": "A model overfits when it fits the noise and quirks of the training set rather than the underlying pattern. The symptom is a low training error together with a high validation error. Overfitting is most likely when the model is very complex, with many parameters, relative to the amount of training data." },
+        { "page": 23, "text": "Ways to reduce overfitting: regularization (L2 weight decay, dropout), collecting more training data, and early stopping, where training stops once the validation error starts rising. Training for longer does not fix overfitting; it usually makes it worse." }
+      ]
+    },
+    {
+      "id": "lf",
+      "name": "Loss functions",
+      "claims": [
+        { "id": "lf1", "page": 5, "text": "A loss function measures how far the model's predictions are from the true values." },
+        { "id": "lf2", "page": 5, "text": "Mean squared error is commonly used for regression problems." },
+        { "id": "lf3", "page": 6, "text": "Cross-entropy loss is used for classification problems." },
+        { "id": "lf4", "page": 6, "text": "Training aims to minimise the loss." }
+      ],
+      "notes": [
+        { "page": 5, "text": "A loss function measures how far the predictions are from the true targets; a lower loss means a better fit. For regression, the usual choice is mean squared error, the average of the squared differences." },
+        { "page": 6, "text": "For classification, cross-entropy loss compares the predicted class probabilities with the true label. Training adjusts the parameters to minimise the loss." }
+      ]
+    }
+  ]
+}

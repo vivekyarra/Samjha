@@ -1,0 +1,878 @@
+{
+  "description": "Hand-labelled student explanations for the Intro to ML demo subject. Labels follow the F2 rules: meaning not keywords; partly-right counts as covered unless the error would lose exam marks; vague mentions that would not earn the mark are missing. Split: 'dev' items are used to tune the built-in engine; 'test' items are held out and only scored.",
+  "items": [
+    {
+      "id": "e01",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "gd",
+      "quality": "strong",
+      "explanation": "Gradient descent is how we train a model. We compute the gradient of the loss with respect to the weights and then move the weights in the opposite direction of the gradient, because the gradient points uphill. The learning rate decides how big each step is. If you keep the learning rate too high, you overshoot the minimum and the loss can even blow up. If it's too low, training takes forever to converge. In practice we use stochastic gradient descent where each step uses a small mini-batch of examples instead of the full dataset.",
+      "labels": {
+        "gd1": "covered",
+        "gd2": "covered",
+        "gd3": "covered",
+        "gd4": "covered",
+        "gd5": "covered"
+      }
+    },
+    {
+      "id": "e02",
+      "split": "dev",
+      "hinglish": true,
+      "topic": "gd",
+      "quality": "hinglish, wrong direction",
+      "explanation": "Dekho, gradient descent mein hum weights ko gradient ki direction mein move karte hain taaki loss kam ho. Learning rate matlab step size, kitna bada step lena hai. Agar learning rate bahut bada hai toh hum minimum ke paar chale jaate hain, overshoot ho jaata hai.",
+      "labels": {
+        "gd1": "wrong",
+        "gd2": "covered",
+        "gd3": "covered",
+        "gd4": "missing",
+        "gd5": "missing"
+      }
+    },
+    {
+      "id": "e03",
+      "split": "test",
+      "hinglish": false,
+      "topic": "gd",
+      "quality": "swapped learning-rate effects",
+      "explanation": "Gradient descent reduces the loss step by step by going downhill, against the gradient. The learning rate is the step size. A small learning rate makes the model overshoot and diverge, while a large learning rate makes training really slow.",
+      "labels": {
+        "gd1": "covered",
+        "gd2": "covered",
+        "gd3": "wrong",
+        "gd4": "wrong",
+        "gd5": "missing"
+      }
+    },
+    {
+      "id": "e04",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "gd",
+      "quality": "empty of content",
+      "explanation": "Gradient descent is an optimization algorithm used to train neural networks. It is very important in machine learning and is used everywhere.",
+      "labels": {
+        "gd1": "missing",
+        "gd2": "missing",
+        "gd3": "missing",
+        "gd4": "missing",
+        "gd5": "missing"
+      }
+    },
+    {
+      "id": "e05",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "gd",
+      "quality": "wrong about SGD",
+      "explanation": "We update parameters by subtracting the learning rate times the gradient, so we move opposite to the slope. The learning rate controls how big the update is. In stochastic gradient descent we compute the gradient on the entire dataset at every step, which makes it exact.",
+      "labels": {
+        "gd1": "covered",
+        "gd2": "covered",
+        "gd3": "missing",
+        "gd4": "missing",
+        "gd5": "wrong"
+      }
+    },
+    {
+      "id": "e06",
+      "split": "dev",
+      "hinglish": true,
+      "topic": "gd",
+      "quality": "hinglish, strong",
+      "explanation": "Simple hai yaar: loss ka gradient nikalo aur weights ko uske ulta direction mein thoda sa shift karo. Kitna shift karna hai woh learning rate decide karta hai. Learning rate chhota rakha toh convergence bahut slow hogi, aur bahut bada rakha toh loss explode kar sakta hai. SGD mein har step pe sirf ek chhota random batch use hota hai.",
+      "labels": {
+        "gd1": "covered",
+        "gd2": "covered",
+        "gd3": "covered",
+        "gd4": "covered",
+        "gd5": "covered"
+      }
+    },
+    {
+      "id": "e07",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "gd",
+      "quality": "analogy only, partial",
+      "explanation": "Okay so basically you have a loss function and you want to find the lowest point, like walking down a hill in fog. You feel the slope under your feet and take a step downhill. You keep repeating this until you reach the bottom. The size of your step matters a lot.",
+      "labels": {
+        "gd1": "covered",
+        "gd2": "missing",
+        "gd3": "missing",
+        "gd4": "missing",
+        "gd5": "missing"
+      }
+    },
+    {
+      "id": "e08",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "bp",
+      "quality": "strong",
+      "explanation": "Backpropagation is the algorithm that finds the gradient of the loss for every weight in the network. First we do a forward pass and save the activations of each layer. Then we start from the output layer and go backwards to the input, applying the chain rule at each layer. Finally these gradients are handed to gradient descent, which updates the weights.",
+      "labels": {
+        "bp1": "covered",
+        "bp2": "covered",
+        "bp3": "covered",
+        "bp4": "covered"
+      }
+    },
+    {
+      "id": "e09",
+      "split": "test",
+      "hinglish": false,
+      "topic": "bp",
+      "quality": "wrong direction",
+      "explanation": "In backprop the error is propagated from the input layer forward to the output layer using the chain rule, and that gives the gradient for each weight. After that the optimizer uses the gradients to change the weights.",
+      "labels": {
+        "bp1": "covered",
+        "bp2": "wrong",
+        "bp3": "missing",
+        "bp4": "covered"
+      }
+    },
+    {
+      "id": "e10",
+      "split": "dev",
+      "hinglish": true,
+      "topic": "bp",
+      "quality": "hinglish, partial",
+      "explanation": "Backprop basically chain rule ka use karke gradients nikalta hai. Output se shuru karke peeche ki taraf jaate hain, layer by layer. Har weight ka gradient mil jaata hai.",
+      "labels": {
+        "bp1": "covered",
+        "bp2": "covered",
+        "bp3": "missing",
+        "bp4": "missing"
+      }
+    },
+    {
+      "id": "e11",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "bp",
+      "quality": "two misconceptions",
+      "explanation": "Backpropagation is basically what updates the weights directly, it is a different algorithm from gradient descent. You don't need a forward pass for it, you just push the error backward from the output using derivatives.",
+      "labels": {
+        "bp1": "missing",
+        "bp2": "covered",
+        "bp3": "wrong",
+        "bp4": "wrong"
+      }
+    },
+    {
+      "id": "e12",
+      "split": "test",
+      "hinglish": false,
+      "topic": "bp",
+      "quality": "strong paraphrase, few keywords",
+      "explanation": "Think of the network as a long chain of functions. To learn, we need to know how much each weight contributed to the error. We run the input through the network once and remember every layer's output. Then, walking from the last layer back towards the first, we multiply local derivatives together, which is just the chain rule. Those derivatives tell gradient descent how to nudge every weight.",
+      "labels": {
+        "bp1": "covered",
+        "bp2": "covered",
+        "bp3": "covered",
+        "bp4": "covered"
+      }
+    },
+    {
+      "id": "e13",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "bp",
+      "quality": "too vague",
+      "explanation": "Backpropagation means going backward through the network.",
+      "labels": {
+        "bp1": "missing",
+        "bp2": "missing",
+        "bp3": "missing",
+        "bp4": "missing"
+      }
+    },
+    {
+      "id": "e14",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "cr",
+      "quality": "strong",
+      "explanation": "The chain rule is for differentiating a function inside another function. You take the derivative of the outer function, evaluated at the inner function, and multiply it by the derivative of the inner function. So if y = f(g(x)), then dy/dx = f'(g(x)) times g'(x). In neural nets each layer is one function in the chain, so backprop just multiplies the local gradients layer by layer.",
+      "labels": {
+        "cr1": "covered",
+        "cr2": "covered",
+        "cr3": "covered"
+      }
+    },
+    {
+      "id": "e15",
+      "split": "test",
+      "hinglish": false,
+      "topic": "cr",
+      "quality": "adds instead of multiplies",
+      "explanation": "Chain rule says that the derivative of a composite function is the sum of the derivatives of the inner and outer functions. So for f(g(x)) you add f'(x) and g'(x).",
+      "labels": {
+        "cr1": "wrong",
+        "cr2": "wrong",
+        "cr3": "missing"
+      }
+    },
+    {
+      "id": "e16",
+      "split": "test",
+      "hinglish": true,
+      "topic": "cr",
+      "quality": "hinglish, loose formula",
+      "explanation": "Chain rule matlab jab function ke andar function ho, jaise f of g of x, toh derivative nikalne ke liye dono ke derivatives multiply karte hain.",
+      "labels": {
+        "cr1": "covered",
+        "cr2": "covered",
+        "cr3": "missing"
+      }
+    },
+    {
+      "id": "e17",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "cr",
+      "quality": "network view only",
+      "explanation": "In a neural network, backprop uses the chain rule: you multiply the gradients of each layer one after another, going from the end to the start.",
+      "labels": {
+        "cr1": "missing",
+        "cr2": "missing",
+        "cr3": "covered"
+      }
+    },
+    {
+      "id": "e18",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "cr",
+      "quality": "wrong about where it is used",
+      "explanation": "The chain rule lets you break a complicated derivative into simpler pieces and multiply them. In neural networks this is only used in the forward pass to compute the predictions, not for training.",
+      "labels": {
+        "cr1": "covered",
+        "cr2": "missing",
+        "cr3": "wrong"
+      }
+    },
+    {
+      "id": "e19",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "of",
+      "quality": "strong",
+      "explanation": "Overfitting is when the model memorises the training data, including its noise, instead of learning the general pattern. You can spot it because the training error is very low but the validation error is high. It usually happens when the model is too complex for how little data you have. To fix it you can add regularization like L2 or dropout, collect more data, or use early stopping.",
+      "labels": {
+        "of1": "covered",
+        "of2": "covered",
+        "of3": "covered",
+        "of4": "covered",
+        "of5": "covered"
+      }
+    },
+    {
+      "id": "e20",
+      "split": "test",
+      "hinglish": false,
+      "topic": "of",
+      "quality": "swapped symptoms and cause",
+      "explanation": "Overfitting means the model does badly on the training set but well on the test set. It happens with very simple models that have too few parameters. Dropout can help.",
+      "labels": {
+        "of1": "missing",
+        "of2": "wrong",
+        "of3": "covered",
+        "of4": "missing",
+        "of5": "wrong"
+      }
+    },
+    {
+      "id": "e21",
+      "split": "dev",
+      "hinglish": true,
+      "topic": "of",
+      "quality": "hinglish, good",
+      "explanation": "Overfitting tab hota hai jab model training data ko ratta maar leta hai, noise bhi yaad kar leta hai. Training accuracy bahut high hoti hai par test pe perform nahi karta. Iska solution hai dropout ya L2 regularization, aur zyada data.",
+      "labels": {
+        "of1": "covered",
+        "of2": "covered",
+        "of3": "covered",
+        "of4": "covered",
+        "of5": "missing"
+      }
+    },
+    {
+      "id": "e22",
+      "split": "test",
+      "hinglish": false,
+      "topic": "of",
+      "quality": "short, two claims",
+      "explanation": "If your model is too complicated and you don't have much data, it will overfit. It basically fits the noise.",
+      "labels": {
+        "of1": "covered",
+        "of2": "missing",
+        "of3": "missing",
+        "of4": "missing",
+        "of5": "covered"
+      }
+    },
+    {
+      "id": "e23",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "of",
+      "quality": "wrong fixes",
+      "explanation": "Overfitting happens when the model learns noise instead of real patterns. Adding regularization makes overfitting worse because it adds extra terms to the model. The best fix is to train for longer.",
+      "labels": {
+        "of1": "covered",
+        "of2": "missing",
+        "of3": "wrong",
+        "of4": "wrong",
+        "of5": "missing"
+      }
+    },
+    {
+      "id": "e24",
+      "split": "dev",
+      "hinglish": true,
+      "topic": "of",
+      "quality": "hinglish, empty",
+      "explanation": "Overfitting matlab model bahut zyada seekh leta hai. Ye accha nahi hai.",
+      "labels": {
+        "of1": "missing",
+        "of2": "missing",
+        "of3": "missing",
+        "of4": "missing",
+        "of5": "missing"
+      }
+    },
+    {
+      "id": "e25",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "lf",
+      "quality": "strong",
+      "explanation": "A loss function tells you how wrong the model's predictions are compared to the actual labels. For regression we usually use mean squared error, and for classification we use cross-entropy. The whole point of training is to make this loss as small as possible.",
+      "labels": {
+        "lf1": "covered",
+        "lf2": "covered",
+        "lf3": "covered",
+        "lf4": "covered"
+      }
+    },
+    {
+      "id": "e26",
+      "split": "test",
+      "hinglish": false,
+      "topic": "lf",
+      "quality": "swapped losses, wrong direction",
+      "explanation": "Loss measures the gap between prediction and truth. Cross entropy is used for regression tasks and MSE is used for classification. We try to maximise the loss during training.",
+      "labels": {
+        "lf1": "covered",
+        "lf2": "wrong",
+        "lf3": "wrong",
+        "lf4": "wrong"
+      }
+    },
+    {
+      "id": "e27",
+      "split": "dev",
+      "hinglish": true,
+      "topic": "lf",
+      "quality": "hinglish, strong",
+      "explanation": "Loss function batata hai ki prediction asli value se kitna door hai. Regression ke liye MSE lagate hain, classification ke liye cross entropy. Training ka goal hai loss ko minimum karna.",
+      "labels": {
+        "lf1": "covered",
+        "lf2": "covered",
+        "lf3": "covered",
+        "lf4": "covered"
+      }
+    },
+    {
+      "id": "e28",
+      "split": "test",
+      "hinglish": false,
+      "topic": "lf",
+      "quality": "partial",
+      "explanation": "The loss function is a number that we minimize while training. Lower is better.",
+      "labels": {
+        "lf1": "missing",
+        "lf2": "missing",
+        "lf3": "missing",
+        "lf4": "covered"
+      }
+    },
+    {
+      "id": "e29",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "lf",
+      "quality": "inverted meaning of loss",
+      "explanation": "Loss function measures how accurate the model is, higher loss means a better model. MSE works for regression problems.",
+      "labels": {
+        "lf1": "wrong",
+        "lf2": "covered",
+        "lf3": "missing",
+        "lf4": "missing"
+      }
+    },
+    {
+      "id": "e30",
+      "split": "test",
+      "hinglish": true,
+      "topic": "gd",
+      "quality": "hinglish, wrong definition of learning rate",
+      "explanation": "Learning rate ka matlab hai kitne epochs tak train karna hai. Gradient descent mein hum gradient ke opposite jaate hain.",
+      "labels": {
+        "gd1": "covered",
+        "gd2": "wrong",
+        "gd3": "missing",
+        "gd4": "missing",
+        "gd5": "missing"
+      }
+    },
+    {
+      "id": "e31",
+      "split": "dev",
+      "hinglish": true,
+      "topic": "bp",
+      "quality": "hinglish, strong",
+      "explanation": "Pehle forward pass chalate hain aur har layer ka activation store kar lete hain. Phir output layer se input ki taraf backward jaate hain, chain rule lagaake. Isse har weight ke liye loss ka gradient milta hai, aur fir gradient descent un gradients se weights update karta hai.",
+      "labels": {
+        "bp1": "covered",
+        "bp2": "covered",
+        "bp3": "covered",
+        "bp4": "covered"
+      }
+    },
+    {
+      "id": "e32",
+      "split": "test",
+      "hinglish": true,
+      "topic": "of",
+      "quality": "hinglish, swapped symptom",
+      "explanation": "Overfitting mein model training data pe accha nahi karta aur test data pe accha karta hai. Isko rokne ke liye early stopping use karo.",
+      "labels": {
+        "of1": "missing",
+        "of2": "wrong",
+        "of3": "missing",
+        "of4": "covered",
+        "of5": "missing"
+      }
+    },
+    {
+      "id": "e33",
+      "split": "dev",
+      "hinglish": true,
+      "topic": "cr",
+      "quality": "hinglish, strong",
+      "explanation": "Chain rule composite functions ke liye hai. Agar y = f(g(x)) hai toh dy/dx = f'(g(x)) * g'(x), yaani outer ka derivative times inner ka derivative. Neural network mein har layer ke local gradients ko multiply karte jaate hain.",
+      "labels": {
+        "cr1": "covered",
+        "cr2": "covered",
+        "cr3": "covered"
+      }
+    },
+    {
+      "id": "e34",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "lf",
+      "quality": "off-notes content",
+      "explanation": "Loss functions are like the score in a video game but reversed. Huber loss is a mix of MSE and MAE that is robust to outliers. Training lowers the loss over time.",
+      "labels": {
+        "lf1": "missing",
+        "lf2": "missing",
+        "lf3": "missing",
+        "lf4": "covered"
+      }
+    },
+    {
+      "id": "e35",
+      "split": "test",
+      "hinglish": false,
+      "topic": "gd",
+      "quality": "terse but mostly right",
+      "explanation": "Gradient descent: compute the gradient, take a step in the negative gradient direction, repeat. With a giant learning rate it will bounce around and may never settle; with a tiny one it crawls. Mini-batch SGD estimates the gradient from a random subset of the data each step.",
+      "labels": {
+        "gd1": "covered",
+        "gd2": "missing",
+        "gd3": "covered",
+        "gd4": "covered",
+        "gd5": "covered"
+      }
+    },
+    {
+      "id": "e36",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "gd",
+      "quality": "paraphrase, two claims",
+      "explanation": "The gradient tells you which way the loss increases fastest, so gradient descent steps the other way to bring the loss down. How far you step each time is set by the learning rate.",
+      "labels": {
+        "gd1": "covered",
+        "gd2": "covered",
+        "gd3": "missing",
+        "gd4": "missing",
+        "gd5": "missing"
+      }
+    },
+    {
+      "id": "e37",
+      "split": "test",
+      "hinglish": true,
+      "topic": "gd",
+      "quality": "hinglish, wrong small-lr and SGD",
+      "explanation": "Agar learning rate bahut chhota ho toh model kabhi converge hi nahi karega, woh diverge kar jaayega. SGD poore dataset pe gradient leta hai.",
+      "labels": {
+        "gd1": "missing",
+        "gd2": "missing",
+        "gd3": "missing",
+        "gd4": "wrong",
+        "gd5": "wrong"
+      }
+    },
+    {
+      "id": "e38",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "gd",
+      "quality": "mini-batch + large lr",
+      "explanation": "In mini-batch gradient descent you don't look at all the training examples at once; you grab a few random ones, estimate the gradient, and update. A learning rate that's too big makes the loss jump around and blow up.",
+      "labels": {
+        "gd1": "missing",
+        "gd2": "missing",
+        "gd3": "covered",
+        "gd4": "missing",
+        "gd5": "covered"
+      }
+    },
+    {
+      "id": "e39",
+      "split": "test",
+      "hinglish": false,
+      "topic": "bp",
+      "quality": "strong paraphrase",
+      "explanation": "Backprop works in two phases. In the forward phase we compute every layer's output and keep it in memory. In the backward phase we go from the last layer to the first one, using the chain rule to get the derivative of the loss for each weight. Then the weights get updated with gradient descent.",
+      "labels": {
+        "bp1": "covered",
+        "bp2": "covered",
+        "bp3": "covered",
+        "bp4": "covered"
+      }
+    },
+    {
+      "id": "e40",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "bp",
+      "quality": "wrong direction and storage",
+      "explanation": "Backpropagation computes gradients starting at the input layer and moving to the output layer. It does not store anything from the forward pass.",
+      "labels": {
+        "bp1": "missing",
+        "bp2": "wrong",
+        "bp3": "wrong",
+        "bp4": "missing"
+      }
+    },
+    {
+      "id": "e41",
+      "split": "test",
+      "hinglish": false,
+      "topic": "cr",
+      "quality": "formula in words",
+      "explanation": "Chain rule: derivative of f(g(x)) equals f'(g(x)) multiplied by g'(x). Basically you multiply the derivative of the outside with the derivative of the inside.",
+      "labels": {
+        "cr1": "covered",
+        "cr2": "covered",
+        "cr3": "missing"
+      }
+    },
+    {
+      "id": "e42",
+      "split": "dev",
+      "hinglish": true,
+      "topic": "cr",
+      "quality": "hinglish, two claims",
+      "explanation": "Chain rule bolta hai ki composite function ka derivative uske parts ke derivatives ka product hota hai. Neural network mein backprop isi se har layer ka local gradient multiply karta hai.",
+      "labels": {
+        "cr1": "covered",
+        "cr2": "missing",
+        "cr3": "covered"
+      }
+    },
+    {
+      "id": "e43",
+      "split": "test",
+      "hinglish": false,
+      "topic": "of",
+      "quality": "loss curves",
+      "explanation": "Overfitting is when your training loss keeps going down but validation loss starts going up, because the model is memorising noise. Adding more data or stopping training early helps.",
+      "labels": {
+        "of1": "covered",
+        "of2": "covered",
+        "of3": "missing",
+        "of4": "covered",
+        "of5": "missing"
+      }
+    },
+    {
+      "id": "e44",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "of",
+      "quality": "describes underfitting",
+      "explanation": "An overfit model is too simple to capture the pattern, so it does badly on both training and test data. Dropout makes it worse.",
+      "labels": {
+        "of1": "wrong",
+        "of2": "wrong",
+        "of3": "wrong",
+        "of4": "missing",
+        "of5": "wrong"
+      }
+    },
+    {
+      "id": "e45",
+      "split": "test",
+      "hinglish": true,
+      "topic": "of",
+      "quality": "hinglish, good",
+      "explanation": "Model ne training data ratta maar liya, isliye naye data pe fail ho jaata hai. Bahut complex model aur kam data ho toh ye hota hai. Regularization jaise dropout lagao.",
+      "labels": {
+        "of1": "covered",
+        "of2": "covered",
+        "of3": "covered",
+        "of4": "missing",
+        "of5": "covered"
+      }
+    },
+    {
+      "id": "e46",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "lf",
+      "quality": "wrong loss for classification",
+      "explanation": "The loss is just a score of how bad the predictions are versus the right answers, and we want it as low as possible. For classification you'd normally use mean squared error.",
+      "labels": {
+        "lf1": "covered",
+        "lf2": "missing",
+        "lf3": "wrong",
+        "lf4": "covered"
+      }
+    },
+    {
+      "id": "e47",
+      "split": "test",
+      "hinglish": true,
+      "topic": "lf",
+      "quality": "hinglish, maximise",
+      "explanation": "Loss ek number hai jo batata hai model kitna galat hai. Hum training mein isko maximum karte hain. Cross entropy classification ke liye use hota hai.",
+      "labels": {
+        "lf1": "covered",
+        "lf2": "missing",
+        "lf3": "covered",
+        "lf4": "wrong"
+      }
+    },
+    {
+      "id": "e48",
+      "split": "test",
+      "hinglish": false,
+      "topic": "gd",
+      "quality": "wrong learning-rate definition",
+      "explanation": "Gradient descent finds the minimum of the loss. The learning rate is how many times we loop over the data.",
+      "labels": {
+        "gd1": "missing",
+        "gd2": "wrong",
+        "gd3": "missing",
+        "gd4": "missing",
+        "gd5": "missing"
+      }
+    },
+    {
+      "id": "e49",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "lf",
+      "quality": "examples instead of definitions",
+      "explanation": "For predicting house prices, which is regression, squared error loss is the standard choice, while for spam vs not-spam we use cross-entropy.",
+      "labels": {
+        "lf1": "missing",
+        "lf2": "covered",
+        "lf3": "covered",
+        "lf4": "missing"
+      }
+    },
+    {
+      "id": "e50",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "gd",
+      "quality": "valley analogy, paraphrase",
+      "explanation": "Think of the loss as a valley. The gradient points up the steepest slope, so every update nudges the parameters a little bit downhill. A bigger learning rate means bigger jumps; crank it up too much and you leap right past the bottom and things go haywire.",
+      "labels": {
+        "gd1": "covered",
+        "gd2": "covered",
+        "gd3": "covered",
+        "gd4": "missing",
+        "gd5": "missing"
+      }
+    },
+    {
+      "id": "e51",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "gd",
+      "quality": "absolute + whole-dataset swap",
+      "explanation": "SGD always uses the entire training set for every single update, which is why it's called stochastic.",
+      "labels": {
+        "gd1": "missing",
+        "gd2": "missing",
+        "gd3": "missing",
+        "gd4": "missing",
+        "gd5": "wrong"
+      }
+    },
+    {
+      "id": "e52",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "gd",
+      "quality": "small lr paraphrase",
+      "explanation": "With a learning rate that is way too low, the loss barely moves each iteration, so you need a huge number of iterations to reach the minimum.",
+      "labels": {
+        "gd1": "missing",
+        "gd2": "missing",
+        "gd3": "missing",
+        "gd4": "covered",
+        "gd5": "missing"
+      }
+    },
+    {
+      "id": "e53",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "bp",
+      "quality": "paraphrase, sensitivity wording",
+      "explanation": "Backprop is just the chain rule applied repeatedly. You go from the loss back through each layer, collecting how sensitive the loss is to each weight. The forward pass has to happen first because backprop needs those cached activations.",
+      "labels": {
+        "bp1": "covered",
+        "bp2": "covered",
+        "bp3": "covered",
+        "bp4": "missing"
+      }
+    },
+    {
+      "id": "e54",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "bp",
+      "quality": "direction swap",
+      "explanation": "Backpropagation sends the gradients forward from the input layer to the output layer, and then the weights are updated by gradient descent.",
+      "labels": {
+        "bp1": "missing",
+        "bp2": "wrong",
+        "bp3": "missing",
+        "bp4": "covered"
+      }
+    },
+    {
+      "id": "e55",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "cr",
+      "quality": "formula-shape error",
+      "explanation": "For a composition f(g(x)), the derivative is f'(x) times g'(x), you just multiply the two derivatives.",
+      "labels": {
+        "cr1": "covered",
+        "cr2": "wrong",
+        "cr3": "missing"
+      }
+    },
+    {
+      "id": "e56",
+      "split": "dev",
+      "hinglish": true,
+      "topic": "cr",
+      "quality": "hinglish, formula in words",
+      "explanation": "Chain rule ka matlab: bahar wale function ka derivative, andar wale function pe evaluate karke, andar wale ke derivative se multiply karo.",
+      "labels": {
+        "cr1": "covered",
+        "cr2": "covered",
+        "cr3": "missing"
+      }
+    },
+    {
+      "id": "e57",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "of",
+      "quality": "absolute misconception",
+      "explanation": "Overfitting is always better than underfitting, because the training error is low. Dropout and weight decay help reduce it though.",
+      "labels": {
+        "of1": "missing",
+        "of2": "missing",
+        "of3": "covered",
+        "of4": "missing",
+        "of5": "missing"
+      }
+    },
+    {
+      "id": "e58",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "of",
+      "quality": "dense paraphrase",
+      "explanation": "When a model has way too many parameters for a tiny dataset, it starts fitting random quirks of the training examples, so its training loss is great but it falls apart on validation data.",
+      "labels": {
+        "of1": "covered",
+        "of2": "covered",
+        "of3": "missing",
+        "of4": "missing",
+        "of5": "covered"
+      }
+    },
+    {
+      "id": "e59",
+      "split": "dev",
+      "hinglish": false,
+      "topic": "lf",
+      "quality": "role swap",
+      "explanation": "Cross entropy is the loss we use for regression, and mean squared error is the one for classification.",
+      "labels": {
+        "lf1": "missing",
+        "lf2": "wrong",
+        "lf3": "wrong",
+        "lf4": "missing"
+      }
+    },
+    {
+      "id": "e60",
+      "split": "dev",
+      "hinglish": true,
+      "topic": "lf",
+      "quality": "hinglish paraphrase",
+      "explanation": "Loss bataata hai ki model ke predictions sahi answers se kitne alag hain, aur training mein hum isko ghatate hain.",
+      "labels": {
+        "lf1": "covered",
+        "lf2": "missing",
+        "lf3": "missing",
+        "lf4": "covered"
+      }
+    },
+    {
+      "id": "e61",
+      "split": "dev",
+      "hinglish": true,
+      "topic": "of",
+      "quality": "hinglish, two claims",
+      "explanation": "Overfitting ka matlab hai model ne training data ke noise ko yaad kar liya hai, general pattern nahi seekha. Validation error zyada aata hai jabki training error kam hota hai.",
+      "labels": {
+        "of1": "covered",
+        "of2": "covered",
+        "of3": "missing",
+        "of4": "missing",
+        "of5": "missing"
+      }
+    }
+  ]
+}
