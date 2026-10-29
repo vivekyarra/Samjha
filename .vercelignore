@@ -1,0 +1,6 @@
+.data
+.env*
+!.env.example
+.claude
+supabase/.temp
+*.tsbuildinfo

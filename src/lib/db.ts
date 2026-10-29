@@ -189,12 +189,14 @@ export interface RunResult { changes: number }
 /** All rows. */
 export async function all<T = Record<string, unknown>>(sql: string, ...params: unknown[]): Promise<T[]> {
   if (PG_URL) return [...(await pgQuery(sql, params))] as T[];
-  return sqlite().prepare(sql).all(...norm(params)) as T[];
+  // node:sqlite rows have a null prototype; copy to plain objects so they can cross to Client Components.
+  return sqlite().prepare(sql).all(...norm(params)).map((r) => ({ ...r })) as T[];
 }
 /** First row or undefined. */
 export async function get<T = Record<string, unknown>>(sql: string, ...params: unknown[]): Promise<T | undefined> {
   if (PG_URL) return (await pgQuery(sql, params))[0] as T | undefined;
-  return sqlite().prepare(sql).get(...norm(params)) as T | undefined;
+  const row = sqlite().prepare(sql).get(...norm(params));
+  return (row ? { ...row } : undefined) as T | undefined;
 }
 /** INSERT/UPDATE/DELETE. */
 export async function run(sql: string, ...params: unknown[]): Promise<RunResult> {
