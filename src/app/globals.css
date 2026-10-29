@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
+/* Samjha design tokens. Calm, minimal, dark + light. Use via Tailwind: bg-bg, bg-surface, text-fg, text-muted, border-line,
+   text-accent, bg-red/amber/green (mastery). Never show mastery by colour alone: pair with MasteryBadge (icon + label). */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --surface-2: #f0eee8;
+  --fg: #1c1b19;
+  --muted: #6b6860;
+  --line: #e3e0d8;
+  --accent: #4f46e5;
+  --accent-fg: #ffffff;
+  --red: #dc4a3d;
+  --red-soft: #fbe5e2;
+  --amber: #d9930d;
+  --amber-soft: #fbf0d6;
+  --green: #2f9e5b;
+  --green-soft: #dcf2e4;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111110;
+    --surface: #1a1a18;
+    --surface-2: #232320;
+    --fg: #eceae4;
+    --muted: #9b978d;
+    --line: #2e2d29;
+    --accent: #8b85ff;
+    --accent-fg: #0d0c1a;
+    --red: #f06b5e;
+    --red-soft: #3a1d19;
+    --amber: #f0b43c;
+    --amber-soft: #382a10;
+    --green: #4cc47e;
+    --green-soft: #15301f;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111110;
+  --surface: #1a1a18;
+  --surface-2: #232320;
+  --fg: #eceae4;
+  --muted: #9b978d;
+  --line: #2e2d29;
+  --accent: #8b85ff;
+  --accent-fg: #0d0c1a;
+  --red: #f06b5e;
+  --red-soft: #3a1d19;
+  --amber: #f0b43c;
+  --amber-soft: #382a10;
+  --green: #4cc47e;
+  --green-soft: #15301f;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-red: var(--red);
+  --color-red-soft: var(--red-soft);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-green: var(--green);
+  --color-green-soft: var(--green-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html, body { background: var(--bg); color: var(--fg); }
+body { font-family: var(--font-geist-sans), system-ui, sans-serif; }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .card { @apply rounded-2xl border border-line bg-surface p-4; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed bg-accent text-accent-fg hover:opacity-90; }
+  .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed border border-line bg-surface hover:bg-surface-2; }
+  .input { @apply w-full rounded-xl border border-line bg-surface px-3 py-2 text-fg placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent; }
+  .h1 { @apply text-2xl font-semibold tracking-tight; }
+  .h2 { @apply text-lg font-semibold; }
+  .muted { @apply text-sm text-muted; }
+  .buddy-text { @apply text-xl leading-relaxed; }
+  .sentence-active { @apply rounded bg-accent/20; }
 }
