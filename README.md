@@ -1,27 +1,64 @@
 # Samjha
 
 > **You don't know it until you can say it.**
-> A study buddy you only talk to. You explain a topic out loud, Samjha finds exactly what you don't get, checked
-> against your own notes, and explains only that, the way a friend would, in exactly the style you want.
+> Explain a topic out loud; Samjha grades every idea against your own notes and its buddy explains only what you missed.
 
-**Try Samjha now, no signup:** run it locally and open [`/demo`](http://localhost:3000/demo), or use the hosted link
-in the submission. Built for **No Hands: The Wispr Challenge** (WeMakeDevs × Wispr Flow), Builders track, entirely by
-voice (Wispr Flow → Claude Code).
+**Live demo:** https://samjha-app.vercel.app
+
+**Try it in 30 seconds:** open the link → Try the sample workspace (the **Try Samjha now, no signup** button).
+
+Built for **No Hands: The Wispr Challenge** (WeMakeDevs × Wispr Flow), Builders track.
 
 ---
 
 ## The problem
 
-You study a topic alone for five hours and still don't get it. Then, five minutes before the exam, a friend explains it
-and it clicks. The friend doesn't know more than the textbook. Their five minutes work because:
+I'm a student, and this is my own problem. I reread my notes, highlight them, and it *feels* like learning. Then
+someone asks me to explain the topic and I can't. Rereading measures recognition, not understanding.
 
-1. **They know what you don't get.** They skip what you already understand.
-2. **They talk like you.** "Think of it like…" instead of textbook language.
-3. **They give only the essentials.** Five things that matter, not fifty pages.
+Explaining out loud (the Feynman technique) is the fastest way to find the gaps, but typing an explanation is slow,
+and generic AI doesn't know what *I* am missing, so it hands me the textbook again. What actually works is a friend
+five minutes before the exam: they know what you don't get, they talk like you, and they give only the essentials.
 
-Generic AI can't do this: it doesn't know what *you* are missing, so it gives you the textbook again. And re-reading
-notes *feels* like learning but isn't. Explaining out loud (the Feynman technique) is the fastest way to find your
-gaps, but typing an explanation is slow, so nobody does it. With voice, explaining takes as long as thinking.
+Samjha is that friend: you talk, it finds the exact ideas you're missing (checked against your notes, with page
+citations), and explains only those.
+
+## Who it's for
+
+- **Students** revising for exams who want to know what they *don't* understand yet, not reread what they do.
+- **Hinglish and Hindi speakers**, who can explain in the language they actually think in.
+- **Teachers and TAs**, who get an anonymous class heatmap of the most misunderstood ideas.
+- **Placement candidates**, who get a spoken viva on their own GitHub repo.
+
+## How Wispr Flow was used
+
+- **To build it:** the whole app was specified and built by voice. I dictated the product spec,
+  every feature request, bug report and review comment to AI coding tools
+  (Claude Code) with Wispr Flow.
+- **Inside the product, voice is the main input.** The teach-back is spoken: hold the Wispr hotkey and explain the
+  topic. Short spoken commands are recognised as intents ("open backprop", "in Hinglish", "wait, why?", "exam
+  tomorrow", "stop"), so the app can be driven entirely by voice.
+- **Wispr dictation works in every text field of Samjha**: the Voice Box pinned to each screen, notes, style
+  settings, viva answers and the Chrome extension side panel. Typing always works too.
+
+## Features
+
+| # | Feature | What it does |
+|---|---|---|
+| F1 | Notes to concepts | PDF, text, Markdown, pasted text, photos of handwritten notes, syllabus → topics, 3–8 testable claims each with page citations, prerequisite links; review by voice ("merge these two") |
+| F2 | You explain, it grades | Per-claim covered / missing / wrong with verbatim evidence, corrections, misconceptions, "not in your notes", appeal ("this is right") |
+| F3 | The buddy | Explains only missing/wrong claims, starts from what you got right, cites pages, stays under the word limit, interruptible |
+| F4 | Your style | Language (English / Hinglish / Hindi), analogy world, length, level, format, tone, scope; change by voice, remembered, per-subject overrides, "just this time" |
+| F5 | Explain back + mastery | Red / amber / green per claim (always with icon + label), heatmap, "what should I study now?" |
+| F6 | Spaced repetition | FSRS (`ts-fsrs`) card per claim, today's review |
+| F7 | Exam-eve mode | 5/10/20-minute crash session over only red/amber claims, check questions, "last look" sheet |
+| F8 | Root-cause tracing | Follows prerequisites back up to 3 hops: "You're stuck on Backpropagation because the Chain rule is red." |
+| F9 | Class heatmap | Join link + QR, anonymous aggregates only, 5-student minimum, most-misunderstood claims, professor report (link + PDF) |
+| F10 | Viva + placement | Timed oral exam with personas; placement mode grills you on your own GitHub repo |
+| F11 | Chrome extension | "Teach this back" on any selection, slide or PDF, explain in the side panel |
+| F12 | Nudges + streaks | Email (Resend) / WhatsApp (Twilio) reminders, quiet hours, exam-week boost, one-tap unsubscribe |
+| F13 | Exports | Anki `.apkg`, gaps-only revision PDF, session transcript |
+| F14 | No-signup sample workspace | `/demo` opens a fresh "Intro to Machine Learning" workspace with a partly red heatmap, history, sample classmates and a "Suggested explanation" button |
 
 ## How it works
 
@@ -33,25 +70,6 @@ gaps, but typing an explanation is slow, so nobody does it. With voice, explaini
 4. **You explain it back** and the ideas turn green. Spaced repetition keeps them green.
 
 The diagnosis step is what makes the buddy different from a chatbot. It is never skipped.
-
-## Features
-
-| # | Feature | What it does | Status |
-|---|---|---|---|
-| F1 | Notes to concepts | PDF, text, Markdown, pasted text, photos of handwritten notes, syllabus → topics, 3–8 testable claims each with page citations, prerequisite links; review by voice ("merge these two") | Built |
-| F2 | You explain, it grades | Per-claim covered / missing / wrong with verbatim evidence, corrections, misconceptions, "not in your notes", appeal ("this is right") | Built |
-| F3 | The buddy | Explains only missing/wrong claims, starts from what you got right, cites pages, stays under the word limit, interruptible | Built |
-| F4 | Your style | Language (English / Hinglish / Hindi), analogy world, length, level, format, tone, scope; change by voice, remembered, per-subject overrides, "just this time" | Built |
-| F5 | Explain back + mastery | Red / amber / green per claim (always with icon + label), heatmap, "what should I study now?" | Built |
-| F6 | Spaced repetition | FSRS (`ts-fsrs`) card per claim, today's review | Built |
-| F7 | Exam-eve mode | 5/10/20-minute crash session over only red/amber claims, check questions, "last look" sheet | Built |
-| F8 | Root-cause tracing | Follows prerequisites back up to 3 hops: "You're stuck on Backpropagation because the Chain rule is red." | Built |
-| F9 | Class heatmap | Join link + QR, anonymous aggregates only, 5-student minimum, most-misunderstood claims, professor report (link + PDF) | Built |
-| F10 | Viva + placement | Timed oral exam with personas; placement mode grills you on your own GitHub repo | Built |
-| F11 | Chrome extension | "Teach this back" on any selection, slide or PDF, explain in the side panel | Built |
-| F12 | Nudges + streaks | Email (Resend) / WhatsApp (Twilio) reminders, quiet hours, exam-week boost, one-tap unsubscribe | Built |
-| F13 | Exports | Anki `.apkg`, gaps-only revision PDF, session transcript | Built |
-| F14 | No-signup sample workspace | `/demo` opens a fresh "Intro to Machine Learning" workspace with a partly red heatmap, history, sample classmates and a "Suggested explanation" button | Built |
 
 ## Voice design (Wispr Flow)
 

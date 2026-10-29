@@ -88,7 +88,7 @@ Sigmoid squashes any input to a value between 0 and 1, which is useful for proba
 
 Tanh outputs values between -1 and 1 and is zero-centred, which often trains a little faster than sigmoid, but it also saturates.
 
-ReLU (rectified linear unit) outputs max(0, x). It is cheap to compute and does not saturate for positive inputs, so gradients flow well; it is the default choice for hidden layers. Its weakness is "dying ReLU": a neuron whose input is always negative outputs zero and gets zero gradient forever. Leaky ReLU fixes this with a small slope for negative inputs.
+ReLU (rectified linear unit) outputs max(0, x). It is cheap to compute and does not saturate for positive inputs, so gradients flow well; it is the default choice for hidden layers. One known issue is "dying ReLU": a neuron whose input is always negative outputs zero and gets zero gradient forever. Leaky ReLU fixes this with a small slope for negative inputs.
 
 Softmax is used on the output layer for multi-class classification. It turns a vector of scores into probabilities that are all positive and sum to 1.
 
