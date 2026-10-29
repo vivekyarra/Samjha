@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Samjha extension options</title>
+  <link rel="stylesheet" href="panel.css" />
+  <style>main { max-width: 520px; } input { width: 100%; font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); }</style>
+</head>
+<body>
+  <main>
+    <h1>Samjha extension</h1>
+    <form id="form" class="view">
+      <label for="url">Samjha URL</label>
+      <input id="url" type="url" required />
+      <label for="token">Extension key <span class="muted">(paste it here, or use Connect extension below)</span></label>
+      <input id="token" type="password" autocomplete="off" />
+      <div class="row wrap">
+        <button class="primary" type="submit">Save</button>
+        <button id="connect" type="button">Connect extension</button>
+        <button id="test" type="button">Test connection</button>
+      </div>
+    </form>
+    <p id="status" role="status" class="muted"></p>
+    <p class="muted">Shortcut: Ctrl+Shift+Y (⌘⇧Y on Mac). Change it at chrome://extensions/shortcuts. For local PDFs, enable “Allow access to file URLs” for Samjha.</p>
+  </main>
+  <script src="config.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

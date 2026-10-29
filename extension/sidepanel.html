@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Samjha</title>
+  <link rel="stylesheet" href="panel.css" />
+</head>
+<body>
+  <header class="bar">
+    <strong>Samjha</strong>
+    <span id="who" class="muted"></span>
+    <a id="openFull" class="link" target="_blank" hidden>Open in Samjha</a>
+  </header>
+
+  <main id="app">
+    <section id="v-idle" class="view">
+      <h1>Teach this back</h1>
+      <p class="muted">Select text on any slide, PDF or course page, then press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Y</kbd> (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>Y</kbd> on Mac), click the Samjha button, or right-click → “Teach this back with Samjha”.</p>
+    </section>
+
+    <section id="v-busy" class="view" hidden>
+      <p role="status" id="busyText" class="muted">Reading your selection…</p>
+    </section>
+
+    <section id="v-auth" class="view" hidden>
+      <h1>Connect to Samjha</h1>
+      <p class="muted">Sign in to Samjha in a tab, then connect this extension.</p>
+      <div class="row">
+        <button id="btnSignIn" class="primary">Open Samjha to sign in</button>
+        <button id="btnConnect">Connect extension</button>
+      </div>
+      <button id="btnRetry" class="ghost">I've signed in, try again</button>
+    </section>
+
+    <section id="v-session" class="view" hidden>
+      <h1 id="topicName"></h1>
+      <details id="captured" class="card">
+        <summary>What you captured</summary>
+        <p id="capturedText" class="muted pre"></p>
+      </details>
+
+      <section id="results" hidden aria-label="Grade results">
+        <ul id="gradeList" class="grades"></ul>
+        <ul id="miscList" class="misc"></ul>
+      </section>
+
+      <section id="buddyBox" hidden aria-label="Buddy">
+        <p id="buddyText" class="card buddy pre" aria-live="polite"></p>
+        <div class="row wrap">
+          <button data-mode="example">Give an example</button>
+          <button data-mode="shorter">Shorter</button>
+          <button data-mode="stuck">I still don't get it</button>
+          <button id="btnBack" class="primary">Explain it back</button>
+        </div>
+      </section>
+
+      <section id="explainBox" hidden>
+        <label for="explain" id="explainLabel" class="muted"></label>
+        <textarea id="explain" rows="7"></textarea>
+        <div class="row">
+          <button id="btnSend" class="primary">Send</button>
+          <button id="btnStop" class="ghost" title="Stop reading aloud (Esc)">Stop voice</button>
+        </div>
+      </section>
+
+      <p id="grading" role="status" class="muted" hidden>Checking your explanation…</p>
+      <p id="doneMsg" role="status" class="card ok" hidden>✓ Every point covered. Nice work.</p>
+    </section>
+
+    <p id="error" role="alert" class="card err" hidden></p>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+</html>
