@@ -1,0 +1,513 @@
+[
+  {
+    "engine": "built-in",
+    "version": "builtin-v1",
+    "date": "2026-10-28",
+    "label": "baseline before tuning (dev = original 30 items)",
+    "dev": {
+      "agreement": 0.796875,
+      "total": 128,
+      "perStatus": {
+        "covered": {
+          "precision": 0.835820895522388,
+          "recall": 0.875,
+          "n": 64
+        },
+        "missing": {
+          "precision": 0.8235294117647058,
+          "recall": 0.8571428571428571,
+          "n": 49
+        },
+        "wrong": {
+          "precision": 0.4,
+          "recall": 0.26666666666666666,
+          "n": 15
+        }
+      },
+      "conf": {
+        "covered>covered": 56,
+        "wrong>wrong": 4,
+        "missing>wrong": 3,
+        "missing>missing": 42,
+        "covered>wrong": 3,
+        "covered>missing": 5,
+        "missing>covered": 4,
+        "wrong>missing": 4,
+        "wrong>covered": 7
+      }
+    },
+    "test": {
+      "agreement": 0.7349397590361446,
+      "total": 83,
+      "perStatus": {
+        "covered": {
+          "precision": 0.7941176470588235,
+          "recall": 0.75,
+          "n": 36
+        },
+        "missing": {
+          "precision": 0.6829268292682927,
+          "recall": 0.9032258064516129,
+          "n": 31
+        },
+        "wrong": {
+          "precision": 0.75,
+          "recall": 0.375,
+          "n": 16
+        }
+      },
+      "conf": {
+        "covered>covered": 27,
+        "wrong>covered": 5,
+        "wrong>wrong": 6,
+        "missing>missing": 28,
+        "missing>covered": 2,
+        "wrong>missing": 5,
+        "covered>missing": 8,
+        "covered>wrong": 1,
+        "missing>wrong": 1
+      }
+    },
+    "hinglish": {
+      "agreement": 0.7692307692307693,
+      "total": 65,
+      "perStatus": {
+        "covered": {
+          "precision": 0.9333333333333333,
+          "recall": 0.7777777777777778,
+          "n": 36
+        },
+        "missing": {
+          "precision": 0.6896551724137931,
+          "recall": 0.8695652173913043,
+          "n": 23
+        },
+        "wrong": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "n": 6
+        }
+      },
+      "conf": {
+        "wrong>wrong": 2,
+        "covered>covered": 28,
+        "missing>wrong": 2,
+        "missing>missing": 20,
+        "covered>wrong": 2,
+        "covered>missing": 6,
+        "wrong>missing": 3,
+        "wrong>covered": 1,
+        "missing>covered": 1
+      }
+    },
+    "all": {
+      "agreement": 0.7725118483412322,
+      "total": 211,
+      "perStatus": {
+        "covered": {
+          "precision": 0.8217821782178217,
+          "recall": 0.83,
+          "n": 100
+        },
+        "missing": {
+          "precision": 0.7608695652173914,
+          "recall": 0.875,
+          "n": 80
+        },
+        "wrong": {
+          "precision": 0.5555555555555556,
+          "recall": 0.3225806451612903,
+          "n": 31
+        }
+      },
+      "conf": {
+        "covered>covered": 83,
+        "wrong>wrong": 10,
+        "missing>wrong": 4,
+        "missing>missing": 70,
+        "wrong>covered": 12,
+        "covered>wrong": 4,
+        "covered>missing": 13,
+        "missing>covered": 6,
+        "wrong>missing": 9
+      }
+    },
+    "msPerItem": 13
+  },
+  {
+    "engine": "built-in",
+    "version": "builtin-v3",
+    "date": "2026-10-28",
+    "label": "sibling-claim check, clause binding, punctuation-bounded negation, calibrated on dev (dev = original 30 items)",
+    "dev": {
+      "agreement": 0.9296875,
+      "total": 128,
+      "perStatus": {
+        "covered": {
+          "precision": 0.9411764705882353,
+          "recall": 1,
+          "n": 64
+        },
+        "missing": {
+          "precision": 0.9183673469387755,
+          "recall": 0.9183673469387755,
+          "n": 49
+        },
+        "wrong": {
+          "precision": 0.9090909090909091,
+          "recall": 0.6666666666666666,
+          "n": 15
+        }
+      },
+      "conf": {
+        "covered>covered": 64,
+        "wrong>wrong": 10,
+        "missing>missing": 45,
+        "missing>covered": 3,
+        "wrong>missing": 4,
+        "wrong>covered": 1,
+        "missing>wrong": 1
+      }
+    },
+    "test": {
+      "agreement": 0.8433734939759037,
+      "total": 83,
+      "perStatus": {
+        "covered": {
+          "precision": 1,
+          "recall": 0.7777777777777778,
+          "n": 36
+        },
+        "missing": {
+          "precision": 0.7317073170731707,
+          "recall": 0.967741935483871,
+          "n": 31
+        },
+        "wrong": {
+          "precision": 0.8571428571428571,
+          "recall": 0.75,
+          "n": 16
+        }
+      },
+      "conf": {
+        "covered>covered": 28,
+        "wrong>wrong": 12,
+        "missing>missing": 30,
+        "covered>missing": 7,
+        "wrong>missing": 4,
+        "covered>wrong": 1,
+        "missing>wrong": 1
+      }
+    },
+    "hinglish": {
+      "agreement": 0.8769230769230769,
+      "total": 65,
+      "perStatus": {
+        "covered": {
+          "precision": 1,
+          "recall": 0.8888888888888888,
+          "n": 36
+        },
+        "missing": {
+          "precision": 0.7586206896551724,
+          "recall": 0.9565217391304348,
+          "n": 23
+        },
+        "wrong": {
+          "precision": 0.75,
+          "recall": 0.5,
+          "n": 6
+        }
+      },
+      "conf": {
+        "wrong>wrong": 3,
+        "covered>covered": 32,
+        "missing>missing": 22,
+        "covered>missing": 4,
+        "wrong>missing": 3,
+        "missing>wrong": 1
+      }
+    },
+    "all": {
+      "agreement": 0.8957345971563981,
+      "total": 211,
+      "perStatus": {
+        "covered": {
+          "precision": 0.9583333333333334,
+          "recall": 0.92,
+          "n": 100
+        },
+        "missing": {
+          "precision": 0.8333333333333334,
+          "recall": 0.9375,
+          "n": 80
+        },
+        "wrong": {
+          "precision": 0.88,
+          "recall": 0.7096774193548387,
+          "n": 31
+        }
+      },
+      "conf": {
+        "covered>covered": 92,
+        "wrong>wrong": 22,
+        "missing>missing": 75,
+        "missing>covered": 3,
+        "wrong>missing": 8,
+        "covered>missing": 7,
+        "covered>wrong": 1,
+        "missing>wrong": 2,
+        "wrong>covered": 1
+      }
+    },
+    "msPerItem": 5
+  },
+  {
+    "engine": "built-in",
+    "version": "builtin-v5",
+    "date": "2026-10-28",
+    "label": "role/direction swaps, absolute qualifiers, formula shape, mismatch-free coverage, paraphrase lexicon; 12 dev items added",
+    "dev": {
+      "agreement": 0.9555555555555556,
+      "total": 180,
+      "perStatus": {
+        "covered": {
+          "precision": 0.9540229885057471,
+          "recall": 1,
+          "n": 83
+        },
+        "missing": {
+          "precision": 0.96,
+          "recall": 0.935064935064935,
+          "n": 77
+        },
+        "wrong": {
+          "precision": 0.9444444444444444,
+          "recall": 0.85,
+          "n": 20
+        }
+      },
+      "conf": {
+        "covered>covered": 83,
+        "wrong>wrong": 17,
+        "missing>missing": 72,
+        "missing>covered": 4,
+        "wrong>missing": 3,
+        "missing>wrong": 1
+      }
+    },
+    "test": {
+      "agreement": 0.8433734939759037,
+      "total": 83,
+      "perStatus": {
+        "covered": {
+          "precision": 0.9354838709677419,
+          "recall": 0.8055555555555556,
+          "n": 36
+        },
+        "missing": {
+          "precision": 0.7380952380952381,
+          "recall": 1,
+          "n": 31
+        },
+        "wrong": {
+          "precision": 1,
+          "recall": 0.625,
+          "n": 16
+        }
+      },
+      "conf": {
+        "covered>covered": 29,
+        "wrong>covered": 2,
+        "missing>missing": 31,
+        "wrong>wrong": 10,
+        "covered>missing": 7,
+        "wrong>missing": 4
+      }
+    },
+    "hinglish": {
+      "agreement": 0.9090909090909091,
+      "total": 77,
+      "perStatus": {
+        "covered": {
+          "precision": 1,
+          "recall": 0.9047619047619048,
+          "n": 42
+        },
+        "missing": {
+          "precision": 0.8055555555555556,
+          "recall": 1,
+          "n": 29
+        },
+        "wrong": {
+          "precision": 1,
+          "recall": 0.5,
+          "n": 6
+        }
+      },
+      "conf": {
+        "wrong>wrong": 3,
+        "covered>covered": 38,
+        "missing>missing": 29,
+        "covered>missing": 4,
+        "wrong>missing": 3
+      }
+    },
+    "all": {
+      "agreement": 0.9201520912547528,
+      "total": 263,
+      "perStatus": {
+        "covered": {
+          "precision": 0.9491525423728814,
+          "recall": 0.9411764705882353,
+          "n": 119
+        },
+        "missing": {
+          "precision": 0.8803418803418803,
+          "recall": 0.9537037037037037,
+          "n": 108
+        },
+        "wrong": {
+          "precision": 0.9642857142857143,
+          "recall": 0.75,
+          "n": 36
+        }
+      },
+      "conf": {
+        "covered>covered": 112,
+        "wrong>wrong": 27,
+        "missing>missing": 103,
+        "wrong>covered": 2,
+        "missing>covered": 4,
+        "wrong>missing": 7,
+        "covered>missing": 7,
+        "missing>wrong": 1
+      }
+    },
+    "msPerItem": 28
+  },
+  {
+    "engine": "built-in",
+    "version": "builtin-v6",
+    "date": "2026-10-28",
+    "label": "gemini-2.5-flash, free tier",
+    "dev": {
+      "agreement": 0.9555555555555556,
+      "total": 180,
+      "perStatus": {
+        "covered": {
+          "precision": 0.9540229885057471,
+          "recall": 1,
+          "n": 83
+        },
+        "missing": {
+          "precision": 0.96,
+          "recall": 0.935064935064935,
+          "n": 77
+        },
+        "wrong": {
+          "precision": 0.9444444444444444,
+          "recall": 0.85,
+          "n": 20
+        }
+      },
+      "conf": {
+        "covered>covered": 83,
+        "wrong>wrong": 17,
+        "missing>missing": 72,
+        "missing>covered": 4,
+        "wrong>missing": 3,
+        "missing>wrong": 1
+      }
+    },
+    "test": {
+      "agreement": 0.8433734939759037,
+      "total": 83,
+      "perStatus": {
+        "covered": {
+          "precision": 1,
+          "recall": 0.7777777777777778,
+          "n": 36
+        },
+        "missing": {
+          "precision": 0.7142857142857143,
+          "recall": 0.967741935483871,
+          "n": 31
+        },
+        "wrong": {
+          "precision": 0.9230769230769231,
+          "recall": 0.75,
+          "n": 16
+        }
+      },
+      "conf": {
+        "covered>covered": 28,
+        "wrong>wrong": 12,
+        "missing>missing": 30,
+        "covered>missing": 8,
+        "wrong>missing": 4,
+        "missing>wrong": 1
+      }
+    },
+    "hinglish": {
+      "agreement": 0.8961038961038961,
+      "total": 77,
+      "perStatus": {
+        "covered": {
+          "precision": 1,
+          "recall": 0.9047619047619048,
+          "n": 42
+        },
+        "missing": {
+          "precision": 0.8,
+          "recall": 0.9655172413793104,
+          "n": 29
+        },
+        "wrong": {
+          "precision": 0.75,
+          "recall": 0.5,
+          "n": 6
+        }
+      },
+      "conf": {
+        "wrong>wrong": 3,
+        "covered>covered": 38,
+        "missing>missing": 28,
+        "covered>missing": 4,
+        "wrong>missing": 3,
+        "missing>wrong": 1
+      }
+    },
+    "all": {
+      "agreement": 0.9201520912547528,
+      "total": 263,
+      "perStatus": {
+        "covered": {
+          "precision": 0.9652173913043478,
+          "recall": 0.9327731092436975,
+          "n": 119
+        },
+        "missing": {
+          "precision": 0.8717948717948718,
+          "recall": 0.9444444444444444,
+          "n": 108
+        },
+        "wrong": {
+          "precision": 0.9354838709677419,
+          "recall": 0.8055555555555556,
+          "n": 36
+        }
+      },
+      "conf": {
+        "covered>covered": 111,
+        "wrong>wrong": 29,
+        "missing>missing": 102,
+        "missing>covered": 4,
+        "wrong>missing": 7,
+        "covered>missing": 8,
+        "missing>wrong": 2
+      }
+    },
+    "msPerItem": 14
+  }
+]

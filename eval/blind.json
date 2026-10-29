@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "note": "Blind set written independently of the grader; never used for tuning.",
+  "items": [
+    {
+      "id": "b01",
+      "topicId": "gd",
+      "explanation": "Okay so gradient descent, um, it's how we actually train the model. You have this loss and you compute its gradient, and the gradient tells you which way the loss goes up the fastest, right? So you do the reverse, you nudge the weights the other way, so w becomes w minus the learning rate times the gradient. And the learning rate is basically how big a jump you take each time. Now the tricky part is picking it. If you crank it up too much you jump right past the bottom of the valley and you can end up bouncing around or the loss literally explodes. If it's tiny then yeah you'll get there eventually but it takes forever, like thousands and thousands of steps. And then the stochastic version, instead of looking at the whole dataset every step, which is super expensive, you just grab a small random batch of examples and estimate the gradient from that. It's noisier but way cheaper. I think that's everything.",
+      "labels": { "gd1": "covered", "gd2": "covered", "gd3": "covered", "gd4": "covered", "gd5": "covered" }
+    },
+    {
+      "id": "b02",
+      "topicId": "gd",
+      "explanation": "Haan toh gradient descent mein, dekho, loss ka gradient nikaalte hain, aur gradient batata hai ki loss kis taraf sabse tezi se badh raha hai. Toh hum ulta jaate hain, matlab gradient ka opposite direction mein weights ko shift karte hain. Learning rate ek chhota sa number hai jo decide karta hai ki har baar kitna bada step lena hai. Agar learning rate bahut bada rakh diya toh minimum ke upar se kood jaayega, idhar udhar jhoolega, kabhi kabhi loss badhta hi chala jaata hai. Aur stochastic gradient descent mein, um, basically hum poore dataset pe gradient calculate karte hain har step pe, bas woh thoda fast hai kyunki GPU pe chalta hai. Haan yahi hai mostly.",
+      "labels": { "gd1": "covered", "gd2": "covered", "gd3": "covered", "gd4": "missing", "gd5": "wrong" }
+    },
+    {
+      "id": "b03",
+      "topicId": "gd",
+      "explanation": "So the gradient is like an arrow pointing towards the minimum of the loss, so what gradient descent does is it just follows the gradient, you keep stepping in the gradient's direction until you reach the bottom. The learning rate is the step size, like how far you move on each update. And honestly a bigger learning rate is always better because you get to the answer in fewer steps, there's no real downside except maybe it's less precise. A small one is just, like, slow, you crawl towards the answer and it takes ages to train. Yeah that's gradient descent.",
+      "labels": { "gd1": "wrong", "gd2": "covered", "gd3": "wrong", "gd4": "covered", "gd5": "missing" }
+    },
+    {
+      "id": "b04",
+      "topicId": "gd",
+      "explanation": "Toh basically socho ki tum ek pahaad pe ho aur aankh band hai, neeche valley mein jaana hai. Tum feel karte ho ki dhalaan kidhar upar ja rahi hai, woh gradient hai, aur tum uske ulta kadam rakhte ho. Model mein bhi same, parameters ko gradient ke against update karte hain. Kadam kitna lamba hoga woh learning rate se decide hota hai. Agar kadam bahut lamba hai toh tum valley cross karke doosri side pahunch jaate ho, phir wapas, phir aur door, aur loss kam hone ki jagah upar chala jaata hai. Aur agar kadam bahut chhota hai toh pahunchoge zaroor lekin bahut time lagega, training slow ho jaati hai. Bas itna yaad hai abhi.",
+      "labels": { "gd1": "covered", "gd2": "covered", "gd3": "covered", "gd4": "covered", "gd5": "missing" }
+    },
+    {
+      "id": "b05",
+      "topicId": "gd",
+      "explanation": "Right so I mostly remember the stochastic part. Normal gradient descent uses all your training data to work out the gradient before every single update, which is really expensive when you've got millions of examples. SGD instead randomly picks a handful of examples, like a mini-batch of 32 or whatever, and uses that as a rough estimate of the gradient. Then either way you subtract the gradient from the weights, so you're moving opposite to the gradient, that's what makes the loss go down. Oh and about the learning rate, if you set it too small then the weights kind of oscillate back and forth around the minimum and never settle, that's the problem with small learning rates.",
+      "labels": { "gd1": "covered", "gd2": "missing", "gd3": "missing", "gd4": "wrong", "gd5": "covered" }
+    },
+    {
+      "id": "b06",
+      "topicId": "gd",
+      "explanation": "Um, gradient descent is an optimization algorithm, it's what's used to train machine learning models, like neural networks and linear regression too I think. It uses derivatives, calculus basically. And there's a hyperparameter called the learning rate that you have to tune, people usually try like 0.01 or 0.001. It runs for a bunch of iterations until it's done. Sorry, I don't really remember the details.",
+      "labels": { "gd1": "missing", "gd2": "missing", "gd3": "missing", "gd4": "missing", "gd5": "missing" }
+    },
+    {
+      "id": "b07",
+      "topicId": "bp",
+      "explanation": "Okay so backprop. First you do a forward pass, you push the input through the network layer by layer and you save every layer's activations, because you're going to need them later. Then you get the loss at the end. Backpropagation then works out, for every single weight in the network, how much the loss changes if you tweak that weight, so the gradient with respect to each weight. And it does it starting at the output and going backwards towards the input, and at each layer it uses the chain rule, multiplying by that layer's local derivative. The important thing is backprop by itself doesn't change anything, it just gives you the gradients, and then you hand them to gradient descent or Adam or whatever, and that does the actual weight update.",
+      "labels": { "bp1": "covered", "bp2": "covered", "bp3": "covered", "bp4": "covered" }
+    },
+    {
+      "id": "b08",
+      "topicId": "bp",
+      "explanation": "Backpropagation ka main kaam hai ki network ke har ek weight ke liye loss ka gradient nikaalna. Yeh output layer se shuru hota hai aur peeche ki taraf input layer tak jaata hai, aur har layer pe chain rule lagta hai. Aur phir, um, backpropagation khud hi weights ko update kar deta hai, matlab alag se gradient descent chalane ki zarurat nahi padti, backprop hi poora training kar deta hai. Haan toh yeh tha.",
+      "labels": { "bp1": "covered", "bp2": "covered", "bp3": "missing", "bp4": "wrong" }
+    },
+    {
+      "id": "b09",
+      "topicId": "bp",
+      "explanation": "So first there's the forward pass where the data goes through the network and you keep track of all the intermediate outputs of each layer, you store them. Then backpropagation, so it figures out the gradient of the loss for every weight. The way it does that is it starts at the input layer and works forward to the output layer, applying the chain rule as it goes, layer one first, then layer two, and so on. Once you have all these gradients, you plug them into gradient descent and that updates the weights. And you repeat that for every batch.",
+      "labels": { "bp1": "covered", "bp2": "wrong", "bp3": "covered", "bp4": "covered" }
+    },
+    {
+      "id": "b10",
+      "topicId": "bp",
+      "explanation": "Dekho backprop basically ek tarika hai jisse hum pata karte hain ki loss pe har weight ka kitna asar hai, matlab har ek weight ke respect mein loss ka gradient. Yeh bahut efficient hai, nahi toh har weight ke liye alag se calculate karna padta. Aur jab yeh saare gradients mil jaate hain toh unhe gradient descent ko de dete hain aur woh weights ko thoda thoda badal deta hai. Baaki ka detail mujhe exactly yaad nahi hai, kuch derivatives ka scene tha.",
+      "labels": { "bp1": "covered", "bp2": "missing", "bp3": "missing", "bp4": "covered" }
+    },
+    {
+      "id": "b11",
+      "topicId": "bp",
+      "explanation": "Backprop computes the partial derivative of the loss with respect to all of the weights, every one of them. It goes in reverse, from the last layer back to the first, and at each step you're using the chain rule to pass the gradient along. Oh and you don't actually need a forward pass for this, the forward pass is only something you do at test time when you're making predictions, backprop just starts straight from the loss. Yeah I think that's the main idea.",
+      "labels": { "bp1": "covered", "bp2": "covered", "bp3": "wrong", "bp4": "missing" }
+    },
+    {
+      "id": "b12",
+      "topicId": "bp",
+      "explanation": "The way I think about it is like a blame game. The network made a mistake at the output, and now we want to know how much every weight is responsible for that mistake, and that responsibility number is the gradient of the loss for that weight. So the output layer gets blamed first, then it passes the blame back to the layer before it, and that one passes it further back, all the way to the start. And the passing back is done with the chain rule, you multiply each layer's local derivative into the blame you received. So yeah, it flows backward through the whole network.",
+      "labels": { "bp1": "covered", "bp2": "covered", "bp3": "missing", "bp4": "missing" }
+    },
+    {
+      "id": "b13",
+      "topicId": "cr",
+      "explanation": "Chain rule is for taking the derivative when you have a function inside another function. Like y equals f of g of x. The rule says you differentiate the outside function but you leave the inside alone, so f prime of g of x, and then you multiply that by the derivative of the inside, g prime of x. So overall it's just the derivatives of the pieces multiplied together. And why it matters for us is a neural net is literally just one layer's function inside the next one's inside the next one's, so when you do backprop you take each layer's local gradient and multiply them together one layer at a time, going back. That's how you get the gradient for the early layers.",
+      "labels": { "cr1": "covered", "cr2": "covered", "cr3": "covered" }
+    },
+    {
+      "id": "b14",
+      "topicId": "cr",
+      "explanation": "So the chain rule is used when you have a composite function, like a function of a function. The idea is you break it into the individual parts, take the derivative of each part separately, and then you add those derivatives up to get the total derivative. It's kind of like the sum rule but for nested functions. It's really useful in calculus when things get complicated.",
+      "labels": { "cr1": "wrong", "cr2": "missing", "cr3": "missing" }
+    },
+    {
+      "id": "b15",
+      "topicId": "cr",
+      "explanation": "Chain rule matlab jab ek function ke andar doosra function ho, toh uska derivative nikaalne ke liye dono parts ke derivatives ko multiply karte hain. Formula hai, agar y equal to f of g of x, toh dy by dx equal to f prime of x into g prime of x. Aur neural network mein yeh bahut kaam aata hai kyunki network bhi layers ka composition hai, toh backprop mein har layer ka local gradient lete hain aur layer by layer multiply karte jaate hain.",
+      "labels": { "cr1": "covered", "cr2": "wrong", "cr3": "covered" }
+    },
+    {
+      "id": "b16",
+      "topicId": "cr",
+      "explanation": "Let me just do an example, that's easier. Say y is sin of x squared. The outer thing is sine and the inner thing is x squared. So you take the derivative of sine, which is cosine, but you keep x squared inside it, so cos of x squared, and then times the derivative of the inner bit, which is 2x. So the answer is 2x cos x squared. In general it's the outer function's derivative evaluated at the inner function, times the inner function's derivative. So basically you're multiplying together the derivatives of each piece of the composition.",
+      "labels": { "cr1": "covered", "cr2": "covered", "cr3": "missing" }
+    },
+    {
+      "id": "b17",
+      "topicId": "cr",
+      "explanation": "Um so the chain rule is a rule from calculus, it's about when functions are nested inside each other, like one inside another. And we need it for backpropagation in neural networks, it's kind of the foundation of how backprop works. I remember the teacher said it's the most important rule for deep learning. That's what I've got.",
+      "labels": { "cr1": "missing", "cr2": "missing", "cr3": "missing" }
+    },
+    {
+      "id": "b18",
+      "topicId": "cr",
+      "explanation": "So if you have u equals g of x and y equals f of u, then dy by dx is dy by du times du by dx. So you just chain the rates of change together by multiplying them. Intuitively if y changes three times as fast as u and u changes twice as fast as x then y changes six times as fast as x. And in a network, every layer is like one of these links, so going backwards you take the gradient from the layer above and multiply it by the current layer's local derivative, and keep doing that layer after layer.",
+      "labels": { "cr1": "covered", "cr2": "covered", "cr3": "covered" }
+    },
+    {
+      "id": "b19",
+      "topicId": "of",
+      "explanation": "Overfitting is when your model, instead of learning the actual underlying trend, ends up memorising the random noise and weird quirks in the training set. You can spot it because the training error is really low, but when you check on the validation set the error is high, so it doesn't generalise. It tends to happen when the model is way too complicated, like tons of parameters, compared to how little data you have. To fix it you can use regularization, like L2 weight decay which penalises large weights, or dropout where you randomly switch off neurons during training. You can also just get more training data, or do early stopping, which means you stop training as soon as the validation error starts going back up.",
+      "labels": { "of1": "covered", "of2": "covered", "of3": "covered", "of4": "covered", "of5": "covered" }
+    },
+    {
+      "id": "b20",
+      "topicId": "of",
+      "explanation": "Overfitting tab hota hai jab model asli pattern seekhne ke bajaye training data ka noise bhi yaad kar leta hai, jaise ki random galtiyan bhi. Iska sign yeh hai ki training pe error bahut kam aata hai lekin validation pe error zyada hota hai. Isse bachne ke liye regularization use karte hain, jaise dropout ya L2. Aur ek cheez, zyada data daalne se overfitting aur badh jaati hai kyunki model ko aur zyada noise milta hai yaad karne ke liye, toh data kam hi rakhna better hai.",
+      "labels": { "of1": "covered", "of2": "covered", "of3": "covered", "of4": "wrong", "of5": "missing" }
+    },
+    {
+      "id": "b21",
+      "topicId": "of",
+      "explanation": "Okay overfitting. It's when the model picks up on the noise in the training data rather than the general pattern. So the giveaway is that the training error ends up high but the test or validation error is low, because it's too focused on the training stuff. It mostly happens when the model is too complex for the size of the dataset, like a huge network on a few hundred examples. And one way to deal with it is early stopping, you watch the validation loss and when it starts climbing you stop training right there.",
+      "labels": { "of1": "covered", "of2": "wrong", "of3": "missing", "of4": "covered", "of5": "covered" }
+    },
+    {
+      "id": "b22",
+      "topicId": "of",
+      "explanation": "Overfitting matlab, hmm, kaise bolun, matlab model training data pe ekdum mast perform karta hai, error almost zero, almost perfect, lekin jab naya data dete hain jo usne pehle nahi dekha, validation wala, toh wahan bahut kharab perform karta hai, error ekdum upar chala jaata hai. Yahi hai overfitting, mera dost bhi yahi bolta hai. Baaki solutions wagairah mujhe yaad nahi hain sorry.",
+      "labels": { "of1": "missing", "of2": "covered", "of3": "missing", "of4": "missing", "of5": "missing" }
+    },
+    {
+      "id": "b23",
+      "topicId": "of",
+      "explanation": "So overfitting is when the model fits the noise in the data instead of the true signal behind it. It usually happens when your model is too simple, like if you use a tiny model with very few parameters it can't capture things properly so it overfits. To reduce it you can add L2 regularization, which adds a penalty for big weights to the loss so the model stays smoother, and that helps a lot.",
+      "labels": { "of1": "covered", "of2": "missing", "of3": "covered", "of4": "missing", "of5": "wrong" }
+    },
+    {
+      "id": "b24",
+      "topicId": "of",
+      "explanation": "I like to think of it like a student who memorises the exact answers to last year's paper, including the typos, instead of actually understanding the concepts. So on the practice paper, which is like the training data, they score a hundred percent, but on the real exam, which is like the validation set, they do badly because the questions are a little different. That's overfitting, you learned the noise not the pattern. And one fix is to just give the model way more examples to learn from, more training data, so the noise kind of averages out.",
+      "labels": { "of1": "covered", "of2": "covered", "of3": "missing", "of4": "covered", "of5": "missing" }
+    },
+    {
+      "id": "b25",
+      "topicId": "lf",
+      "explanation": "A loss function is basically a number that tells you how wrong the model's predictions are compared to the actual answers. Big number, very wrong. Small number, close. For regression where you're predicting a continuous value like a price, you typically use mean squared error, so you take each difference between prediction and truth, square it, and average. For classification you use cross-entropy, which looks at the probabilities the model gives each class and compares them to the correct label. And the whole training process is just about tweaking the parameters to get that loss as low as possible.",
+      "labels": { "lf1": "covered", "lf2": "covered", "lf3": "covered", "lf4": "covered" }
+    },
+    {
+      "id": "b26",
+      "topicId": "lf",
+      "explanation": "So the loss function measures the gap between what the model predicted and what the real value was. When we train, we're trying to drive that loss down to a minimum. Now for the types, cross entropy is the one you use for regression problems, like predicting temperature, and mean squared error is the standard one for classification, like cat versus dog. I always mix those up but I'm pretty sure that's right.",
+      "labels": { "lf1": "covered", "lf2": "wrong", "lf3": "wrong", "lf4": "covered" }
+    },
+    {
+      "id": "b27",
+      "topicId": "lf",
+      "explanation": "Loss function ek tarah ka measure hai ki model ki prediction asli answer se kitni door hai. Jitna zyada door, utna zyada loss. Training ka poora goal yahi hai ki yeh loss kam se kam ho jaaye, weights ko adjust karke. Aur regression mein, jaise ghar ki price predict karni ho, wahan mean squared error use hota hai, matlab difference ka square leke average. Classification wala bhi kuch tha but naam yaad nahi aa raha.",
+      "labels": { "lf1": "covered", "lf2": "covered", "lf3": "missing", "lf4": "covered" }
+    },
+    {
+      "id": "b28",
+      "topicId": "lf",
+      "explanation": "Um the loss is like a score that the model keeps track of during training. And the goal of training is to push the loss as high as we can, because a higher loss means the model has learned more. Oh and if you're predicting numbers, like house prices or something, you'd use mean squared error for that. I think that's it.",
+      "labels": { "lf1": "missing", "lf2": "covered", "lf3": "missing", "lf4": "wrong" }
+    },
+    {
+      "id": "b29",
+      "topicId": "lf",
+      "explanation": "Think of it like darts. The bullseye is the true answer and wherever your dart lands is the model's prediction, and the loss is how far off you landed. The whole point of training is to make that distance number as small as you possibly can. For classification problems, so like deciding which category something is, the loss we use is cross-entropy, it takes the probability the model assigned to the correct class and punishes it heavily if that probability is low.",
+      "labels": { "lf1": "covered", "lf2": "missing", "lf3": "covered", "lf4": "covered" }
+    },
+    {
+      "id": "b30",
+      "topicId": "lf",
+      "explanation": "Okay so, a loss function compares the model's output with the target value and gives you one number for how big the error is. There's different ones depending on the problem. If it's a regression task, so continuous outputs, people normally go with MSE, the mean of the squared errors. If it's classification, you go with cross-entropy, because that works with the predicted class probabilities and compares them against the true label. There's also stuff like hinge loss and MAE but I don't think we covered those properly.",
+      "labels": { "lf1": "covered", "lf2": "covered", "lf3": "covered", "lf4": "missing" }
+    }
+  ]
+}
