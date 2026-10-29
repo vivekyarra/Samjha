@@ -22,7 +22,7 @@ export async function currentUser(): Promise<User | null> {
   const jar = await cookies();
   const id = unsign(jar.get(COOKIE)?.value);
   if (!id) return null;
-  return get<User>("SELECT * FROM users WHERE id=?", id) ?? null;
+  return await get<User>("SELECT * FROM users WHERE id=?", id) ?? null;
 }
 
 /** Throws a 401 Response if not signed in. Use in route handlers: `const user = await requireUser();` */
@@ -41,14 +41,14 @@ export async function signOut() {
 }
 
 /** Find or create a user by email (local auth). */
-export function upsertUser(name: string, email: string | null, opts: { isDemo?: boolean } = {}): User {
+export async function upsertUser(name: string, email: string | null, opts: { isDemo?: boolean } = {}): Promise<User> {
   if (email) {
-    const existing = get<User>("SELECT * FROM users WHERE email=?", email.toLowerCase());
+    const existing = await get<User>("SELECT * FROM users WHERE email=?", email.toLowerCase());
     if (existing) return existing;
   }
   const id = newId("u_");
-  run("INSERT INTO users (id,name,email,is_demo,created_at) VALUES (?,?,?,?,?)", id, name, email?.toLowerCase() ?? null, opts.isDemo ? 1 : 0, now());
-  return get<User>("SELECT * FROM users WHERE id=?", id)!;
+  await run("INSERT INTO users (id,name,email,is_demo,created_at) VALUES (?,?,?,?,?)", id, name, email?.toLowerCase() ?? null, opts.isDemo ? 1 : 0, now());
+  return (await get<User>("SELECT * FROM users WHERE id=?", id))!;
 }
 
 /** Wrap a route handler so thrown Responses (e.g. from requireUser) and errors become JSON responses. */
@@ -65,6 +65,6 @@ export function handler<A extends unknown[]>(fn: (...args: A) => Promise<Respons
 }
 
 /** Does this user have access to the subject (owner or member)? */
-export function canAccessSubject(userId: string, subjectId: string): boolean {
-  return !!get("SELECT 1 FROM subject_members WHERE subject_id=? AND user_id=?", subjectId, userId);
+export async function canAccessSubject(userId: string, subjectId: string): Promise<boolean> {
+  return !!await get("SELECT 1 FROM subject_members WHERE subject_id=? AND user_id=?", subjectId, userId);
 }
