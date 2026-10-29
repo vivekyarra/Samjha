@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Samjha — Teach this back",
+  "short_name": "Samjha",
+  "version": "1.0.0",
+  "description": "Select text on any slide, PDF or LMS page and explain it back to Samjha by voice.",
+  "permissions": ["contextMenus", "sidePanel", "storage", "activeTab", "scripting"],
+  "host_permissions": ["http://localhost:3000/*", "<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_title": "Teach this back (Ctrl+Shift+Y)",
+    "default_icon": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" }
+  },
+  "side_panel": { "default_path": "sidepanel.html" },
+  "options_page": "options.html",
+  "commands": {
+    "teach-this-back": {
+      "suggested_key": { "default": "Ctrl+Shift+Y", "mac": "Command+Shift+Y" },
+      "description": "Teach this back"
+    }
+  },
+  "externally_connectable": { "matches": ["http://localhost:3000/*", "http://127.0.0.1:3000/*"] },
+  "icons": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "minimum_chrome_version": "116"
+}

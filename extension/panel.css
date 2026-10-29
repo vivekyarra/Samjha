@@ -1,0 +1,47 @@
+:root {
+  --bg: #f7f6f2; --surface: #ffffff; --fg: #1c1b19; --muted: #6b6860; --line: #e3e0d8;
+  --accent: #4f46e5; --accent-fg: #ffffff;
+  --red-soft: #fbe5e2; --amber-soft: #fbf0d6; --green-soft: #dcf2e4;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111110; --surface: #1a1a18; --fg: #eceae4; --muted: #9b978d; --line: #2e2d29;
+    --accent: #8b85ff; --accent-fg: #0d0c1a;
+    --red-soft: #3a1d19; --amber-soft: #382a10; --green-soft: #15301f;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.bar { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--line); background: var(--surface); }
+.bar .link { margin-left: auto; }
+main { padding: 12px; display: grid; gap: 12px; }
+.view { display: grid; gap: 10px; }
+[hidden] { display: none !important; }
+h1 { font-size: 17px; margin: 0; }
+.muted { color: var(--muted); }
+.pre { white-space: pre-wrap; }
+.link { color: var(--accent); font-size: 13px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px; margin: 0; }
+.card summary { cursor: pointer; }
+#capturedText { max-height: 160px; overflow: auto; margin: 8px 0 0; font-size: 13px; }
+.buddy { font-size: 17px; line-height: 1.5; }
+.ok { background: var(--green-soft); }
+.err { background: var(--red-soft); }
+.row { display: flex; gap: 8px; }
+.wrap { flex-wrap: wrap; }
+button { font: inherit; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+button.primary { background: var(--accent); color: var(--accent-fg); border-color: transparent; }
+button.ghost { background: transparent; }
+button:disabled { opacity: .5; cursor: default; }
+button:focus-visible, textarea:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+textarea { width: 100%; font: inherit; font-size: 16px; padding: 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); resize: vertical; }
+.grades, .misc { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.grades li { border-radius: 8px; padding: 8px; }
+.grades li.covered { background: var(--green-soft); }
+.grades li.wrong { background: var(--red-soft); }
+.grades li.missing { background: var(--amber-soft); }
+.grades .fix { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+.misc { margin-top: 6px; font-size: 13px; }
+kbd { font: 12px ui-monospace, monospace; border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; background: var(--surface); }
+label { display: block; }
