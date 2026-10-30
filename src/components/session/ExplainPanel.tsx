@@ -23,7 +23,7 @@ export function ExplainPanel({
     <section className="space-y-4">
       {isDemo && !back && (
         <div className="rounded-2xl border border-accent/40 bg-accent/10 p-4 text-sm">
-          Hold your dictation key (or type) and explain <em className="font-semibold">{topicName}</em>. Samjha will find what you missed.
+          Hold your dictation key and explain <em className="font-semibold">{topicName}</em>. Samjha will find what you missed.
         </div>
       )}
       <div className="card text-center">
@@ -45,7 +45,7 @@ export function ExplainPanel({
           </p>
         ) : null}
         <p className="muted mt-4">
-          Speak into the box below. Say <strong>“done”</strong> when you&apos;re finished.
+          Speak when you&apos;re ready. Say <strong>“done”</strong> when you&apos;re finished.
         </p>
         <svg aria-hidden className="mx-auto mt-3 animate-bounce text-muted" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M10 3v13M4 10l6 6 6-6" />
@@ -63,7 +63,7 @@ export function ExplainPanel({
           </button>
         )}
       </div>
-      {isDemo && !back && <p className="muted text-center">Try a sample explanation: say or type “suggested explanation”.</p>}
+      {isDemo && !back && <p className="muted text-center">Try a sample explanation: say “suggested explanation”.</p>}
       {suggestError && (
         <p className="text-center text-sm text-red" role="alert">
           {suggestError}

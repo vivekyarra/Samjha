@@ -92,7 +92,6 @@ export function GraphView({ graph, initialTrace }: { graph: GraphData; initialTr
   const [glow, setGlow] = useState(false);
   const [error, setError] = useState("");
   const [pick, setPick] = useState(initialTrace ?? "");
-  const [diagAnswer, setDiagAnswer] = useState("");
   const [diagFeedback, setDiagFeedback] = useState("");
   const [diagBusy, setDiagBusy] = useState(false);
   const timers = useRef<number[]>([]);
@@ -138,7 +137,7 @@ export function GraphView({ graph, initialTrace }: { graph: GraphData; initialTr
   const runTrace = useCallback(async (topicId: string) => {
     clearTimers();
     voice.stop();
-    setStatus("loading"); setError(""); setTrace(null); setLit(0); setGlow(false); setDiagFeedback(""); setDiagAnswer("");
+    setStatus("loading"); setError(""); setTrace(null); setLit(0); setGlow(false); setDiagFeedback("");
     try {
       const res = await fetch(`/api/graph/trace?topicId=${encodeURIComponent(topicId)}`);
       const body = await res.json();
@@ -296,15 +295,14 @@ export function GraphView({ graph, initialTrace }: { graph: GraphData; initialTr
               <Link className="btn-ghost" href={`/session/${trace.path[0]}`}>Retry {failedName}</Link>
             </div>
           ) : awaitingDiag ? (
-            <form className="space-y-2" onSubmit={(e) => { e.preventDefault(); void answerDiagnostic(diagAnswer); }}>
+            <div className="space-y-2">
               <p className="font-medium">{trace.needsDiagnostic[0].question}</p>
-              <input className="input" value={diagAnswer} onChange={(e) => setDiagAnswer(e.target.value)} placeholder="Say or type a one-line answer" />
+              <p className="muted">{diagBusy ? "Checking…" : "Answer out loud in one line."}</p>
               <div className="flex flex-wrap items-center gap-2">
-                <button className="btn-primary" disabled={diagBusy || !diagAnswer.trim()}>{diagBusy ? "Checking…" : "Check"}</button>
                 <button type="button" className="btn-ghost" onClick={dismiss}>Cancel</button>
                 {diagFeedback && <span className="text-sm">{diagFeedback}</span>}
               </div>
-            </form>
+            </div>
           ) : (
             <div className="flex flex-wrap gap-2">
               <Link className="btn-primary" href={`/session/${trace.path[0]}`}>Go through {failedName} again</Link>

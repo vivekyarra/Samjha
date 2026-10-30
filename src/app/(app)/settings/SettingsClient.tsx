@@ -392,7 +392,7 @@ export function SettingsClient({ initial, user }: { initial: Settings; user: { n
         <Toggle label="Premium voice" detail="More natural voice when the server has one configured." checked={settings.premiumVoice} onChange={(v) => update({ premiumVoice: v })} />
       </Section>
 
-      <Section title="Voice Box" hint="How your spoken explanation gets submitted.">
+      <Section title="Listening" hint="How your spoken explanation gets submitted.">
         <Segmented
           label="Submit"
           value={settings.submitMode}

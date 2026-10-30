@@ -26,7 +26,7 @@ export const POST = handler(async (req: Request) => {
   if (!parsed.success) return bad("I couldn't read that request. Please try again.");
   const b = parsed.data;
   const explanation = b.explanation.trim();
-  if (!explanation) return bad("I didn't catch an explanation yet. Say or type it, then send.");
+  if (!explanation) return bad("I didn't catch an explanation yet. Hold your dictation key and say it again.");
   if (explanation.length > MAX_CHARS) return bad(`That's a long one! Please keep it under ${MAX_CHARS} characters, or explain in two parts.`);
 
   const topic = await get<{ id: string; subject_id: string }>("SELECT id, subject_id FROM topics WHERE id=?", b.topicId);

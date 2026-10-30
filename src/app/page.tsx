@@ -76,7 +76,7 @@ export default async function Landing({ searchParams }: { searchParams: Promise<
               </Link>
               <Link href="/login" className="btn-ghost px-6 py-3 text-base">Sign in with email</Link>
             </div>
-            <p className="mt-4 muted">Takes under a minute. Works with typing too.</p>
+            <p className="mt-4 muted">Takes under a minute. Just talk.</p>
           </div>
 
           <div className="card space-y-3 shadow-sm" aria-label="Example diagnosis">
@@ -120,7 +120,7 @@ export default async function Landing({ searchParams }: { searchParams: Promise<
           <div className="card">
             <h3 className="font-semibold">Voice first, built for Wispr Flow</h3>
             <p className="mt-1 text-sm text-muted">
-              One big Voice Box on every screen. Dictate with Wispr Flow and it submits when you pause. Every action,
+              One listening orb on every screen. Dictate with Wispr Flow and it submits when you pause. Every action,
               from &ldquo;open backprop&rdquo; to &ldquo;exam tomorrow&rdquo;, works by voice. The keyboard is optional.
             </p>
           </div>
