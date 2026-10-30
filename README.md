@@ -38,8 +38,8 @@ citations), and explains only those.
 - **Inside the product, voice is the main input.** The teach-back is spoken: hold the Wispr hotkey and explain the
   topic. Short spoken commands are recognised as intents ("open backprop", "in Hinglish", "wait, why?", "exam
   tomorrow", "stop"), so the app can be driven entirely by voice.
-- **Wispr dictation works in every text field of Samjha**: the Voice Box pinned to each screen, notes, style
-  settings, viva answers and the Chrome extension side panel. Typing always works too.
+- **No typing in the study flow.** Every screen has one listening orb: it glows with your voice, and Wispr Flow's
+  words appear beside it, labelled Wispr Flow, the moment you release the hotkey.
 
 ## Features
 
@@ -62,7 +62,7 @@ citations), and explains only those.
 
 ## How it works
 
-1. **You explain** a topic out loud (Wispr Flow, or type).
+1. **You explain** a topic out loud with Wispr Flow.
 2. **Samjha diagnoses** each key idea from your notes as ✓ covered, ○ missing or ✕ wrong, quoting your own words as
    evidence and citing the page.
 3. **The buddy explains only your gaps**, short and casual, in your saved style, and reads it aloud. Interrupt any
@@ -75,8 +75,9 @@ The diagnosis step is what makes the buddy different from a chatbot. It is never
 
 Samjha does not build its own speech recognition. It is designed so Wispr Flow is the natural way to use it:
 
-- **The Voice Box**: one large text field pinned to the bottom of every screen, focused by default. Hold the Wispr
-  hotkey, speak, and the text lands there.
+- **The listening orb**: pinned to the bottom of every screen. It breathes while idle, swells with your microphone
+  level, pulses while Samjha speaks and ripples when dictation lands. Wispr Flow types into a transparent field
+  layered over it, and the words appear beside the orb labelled Wispr Flow.
 - **Auto-submit** after a configurable pause (default 1.5 s), or "submit only when I say *send*".
 - **Long explanations** can arrive in pieces; they are joined until you say "done" or pause.
 - **Intent classification**: fast rules for short commands, screen context next (long text while explaining is an
@@ -85,7 +86,6 @@ Samjha does not build its own speech recognition. It is designed so Wispr Flow i
   analogy", "in Hinglish", "like I'm 12"), interrupts ("wait, why?"), controls ("stop", "slower", "repeat").
 - **Output**: Web Speech API (English + Hindi voices), sentence-by-sentence highlight, stops within 300 ms on any new
   input. Optional premium voice via ElevenLabs.
-- Typing always works too, for accessibility and noisy places.
 
 ## Architecture
 
