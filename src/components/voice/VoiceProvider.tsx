@@ -1,5 +1,5 @@
 "use client";
-// The always-present Voice Box (spec §5). Wispr Flow dictates into the textarea; we auto-submit after an idle pause,
+// The always-present listening orb (spec §5). Wispr Flow dictates into the orb's transparent field; we auto-submit after an idle pause,
 // classify the text (rules on the client first), let the active screen handle it, and handle navigation/control globally.
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { usePathname, useRouter } from "next/navigation";
@@ -17,12 +17,13 @@ import {
   type IntentCtx,
 } from "@/lib/intent/rules";
 import { useSpeaker } from "./useSpeaker";
+import { ListeningOrb } from "./ListeningOrb";
 
 interface VoiceSettings { autoSubmitMs: number; submitMode: "pause" | "say_send"; voiceRate: number; premiumVoice: boolean; voiceName?: string }
 const DEFAULT_SETTINGS: VoiceSettings = { autoSubmitMs: 1500, submitMode: "pause", voiceRate: 1, premiumVoice: false };
 const SETTINGS_KEY = "samjha.voiceSettings";
 const UNCLEAR_Q = "Did you want me to change the style, or is that part of your explanation?";
-const DEFAULT_HINT = "Hold your dictation key and speak, or type. Try “what should I study?”";
+const DEFAULT_HINT = "Hold your dictation key and speak. Try “what should I study?”";
 
 interface Notice { id: number; text: string; actions?: { label: string; run: () => void }[] }
 
@@ -640,33 +641,32 @@ export function VoiceProvider({ children, userLanguage }: { children: React.Reac
   );
 
   // ---------- render ----------
-  const status: { label: string; tone: string } = speaker.speaking
-    ? { label: "Speaking", tone: "bg-accent" }
+  const status: { label: string; orb: string; tone: string } = speaker.speaking
+    ? { label: "Speaking", orb: "Speaking", tone: "bg-accent" }
     : speaker.paused
-      ? { label: "Paused", tone: "bg-amber" }
+      ? { label: "Paused", orb: "Paused", tone: "bg-amber" }
       : busy > 0
-        ? { label: "Thinking…", tone: "bg-amber animate-pulse" }
+        ? { label: "Thinking…", orb: "Thinking", tone: "bg-amber animate-pulse" }
         : waiting
-          ? { label: "Got it, sending…", tone: "bg-green animate-pulse" }
-          : focused
-            ? { label: "Listening", tone: "bg-green" }
-            : { label: "Click to talk", tone: "bg-muted" };
+          ? { label: "Got it, sending…", orb: "Got it", tone: "bg-green animate-pulse" }
+          : { label: "Listening", orb: "Listening", tone: focused ? "bg-green" : "bg-green/60" };
 
   const hint = screen?.hint || DEFAULT_HINT;
-  const boxPrompt =
-    settings.submitMode === "say_send" ? "Speak or type… say “send” to submit" : screen?.mode === "explain" ? "Start explaining… say “done” when finished" : "Speak or type…";
+  const prompt =
+    settings.submitMode === "say_send" ? "Say “send” when you're finished" : screen?.mode === "explain" ? "Start explaining… say “done” when finished" : "";
+  const live = value.trim();
 
   return (
     <VoiceContext.Provider value={ctxValue}>
       {children}
       <section
-        aria-label="Voice Box"
-        className="fixed inset-x-0 z-40 border-t border-line bg-bg/95 backdrop-blur"
+        aria-label="Voice"
+        className="pointer-events-none fixed inset-x-0 z-40 bg-gradient-to-t from-bg via-bg/95 to-bg/0"
         style={{ bottom: kbOffset }}
       >
-        <div className="mx-auto w-full max-w-5xl px-4 pt-2" style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}>
+        <div className="pointer-events-auto mx-auto w-full max-w-5xl px-4 pt-6" style={{ paddingBottom: "max(0.9rem, env(safe-area-inset-bottom))" }}>
           {draft.length > 0 && (
-            <div className="mb-2 rounded-xl border border-line bg-surface p-3" aria-live="polite">
+            <div className="mx-auto mb-3 max-w-2xl rounded-xl border border-line bg-surface p-3" aria-live="polite">
               <div className="mb-1 flex items-center justify-between gap-2">
                 <span className="text-xs font-medium uppercase tracking-wide text-muted">Your explanation so far</span>
                 <div className="flex gap-2" data-voice-keep-focus>
@@ -683,7 +683,7 @@ export function VoiceProvider({ children, userLanguage }: { children: React.Reac
           )}
 
           {notice && (
-            <div className="mb-2 flex flex-wrap items-center gap-2 text-sm" role="status" aria-live="polite">
+            <div className="mx-auto mb-3 flex max-w-2xl flex-wrap items-center gap-2 text-sm" role="status" aria-live="polite">
               <span className="min-w-0 flex-1">{notice.text}</span>
               {notice.actions?.map((a) => (
                 <button key={a.label} type="button" className="btn-ghost px-3 py-1 text-xs" onClick={a.run}>
@@ -698,97 +698,59 @@ export function VoiceProvider({ children, userLanguage }: { children: React.Reac
             </div>
           )}
 
-          <div className="mb-1.5 flex items-center gap-2 text-xs text-muted">
-            <span className={`inline-block h-2 w-2 shrink-0 rounded-full ${status.tone}`} aria-hidden />
-            <span className="shrink-0 font-medium text-fg" aria-live="polite">
-              {status.label}
-            </span>
-            <span className="min-w-0 flex-1 truncate" title={hint}>
-              · {hint}
-            </span>
-            {heard && !speaker.speaking && busy === 0 && (
-              <span className="hidden max-w-[40%] truncate italic sm:inline" title={heard}>
-                Heard: “{heard}”
-              </span>
-            )}
-          </div>
+          <div className="grid grid-cols-1 items-center justify-items-center gap-3 sm:grid-cols-[1fr_auto_1fr] sm:gap-8">
+            <div className="order-2 min-w-0 text-center text-sm sm:order-1 sm:justify-self-end sm:text-right">
+              <p className="flex items-center justify-center gap-2 font-medium sm:justify-end" aria-live="polite">
+                <span className={`inline-block h-2 w-2 shrink-0 rounded-full ${status.tone}`} aria-hidden />
+                {status.label}
+              </p>
+              <p className="mt-0.5 line-clamp-2 text-xs text-muted" title={hint}>
+                {hint}
+              </p>
+            </div>
 
-          <div className="flex items-end gap-2">
-            <label htmlFor="samjha-voice-box" className="sr-only">
-              Voice Box: speak with your dictation key or type
-            </label>
-            <textarea
-              id="samjha-voice-box"
-              ref={taRef}
-              value={value}
-              onChange={onChange}
-              onKeyDown={onKeyDown}
-              onFocus={() => setFocused(true)}
-              onBlur={() => setFocused(false)}
-              rows={2}
-              autoFocus
-              placeholder={boxPrompt}
-              className="input min-h-[3.5rem] flex-1 resize-none py-3 text-lg leading-snug"
-              aria-describedby="samjha-voice-hint"
-            />
-            <span id="samjha-voice-hint" className="sr-only">
-              {hint}. Enter sends, Shift+Enter adds a new line, Escape stops audio.
-            </span>
-            <div className="flex shrink-0 flex-col gap-2" data-voice-keep-focus>
-              {(speaker.speaking || speaker.paused) && (
-                <button
-                  type="button"
-                  className="btn-ghost h-11 w-11 p-0"
-                  aria-label={speaker.paused ? "Resume audio" : "Stop audio"}
-                  title={speaker.paused ? "Resume (say “resume”)" : "Stop (Esc or say “stop”)"}
-                  onClick={() => {
-                    if (speaker.paused) speaker.resume();
-                    else speaker.stop();
-                    focusBox();
-                  }}
-                >
-                  {speaker.paused ? <PlayIcon /> : <StopIcon />}
-                </button>
-              )}
-              <button
-                type="button"
-                className="btn-primary h-11 w-11 p-0"
-                aria-label="Send"
-                title="Send (Enter)"
-                disabled={!value.trim() && !draft.length}
-                onClick={() => {
-                  if (value.trim()) doSubmit(value, true);
-                  else void finalizeDraft().finally(focusBox);
-                }}
-              >
-                <SendIcon />
-              </button>
+            <div className="order-1 sm:order-2">
+              <ListeningOrb speaking={speaker.speaking} thinking={busy > 0 || waiting} burst={value.length} label={status.orb}>
+                <label htmlFor="samjha-voice-box" className="sr-only">
+                  Samjha is listening: hold your dictation key and speak
+                </label>
+                <textarea
+                  id="samjha-voice-box"
+                  ref={taRef}
+                  value={value}
+                  onChange={onChange}
+                  onKeyDown={onKeyDown}
+                  onFocus={() => setFocused(true)}
+                  onBlur={() => setFocused(false)}
+                  rows={1}
+                  autoFocus
+                  className="orb-input"
+                  aria-describedby="samjha-voice-hint"
+                />
+                <span id="samjha-voice-hint" className="sr-only">
+                  {hint}. Say “stop” or press Escape to stop audio.
+                </span>
+              </ListeningOrb>
+            </div>
+
+            <div className="order-3 hidden min-w-0 text-sm sm:block sm:justify-self-start" aria-live="polite">
+              {live ? (
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-accent">Wispr Flow</p>
+                  <p className="line-clamp-3 italic">“{live}”</p>
+                </div>
+              ) : heard && !speaker.speaking && busy === 0 ? (
+                <div title={heard}>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted">Heard via Wispr Flow</p>
+                  <p className="line-clamp-3 italic text-muted">“{heard}”</p>
+                </div>
+              ) : prompt ? (
+                <p className="text-muted">{prompt}</p>
+              ) : null}
             </div>
           </div>
         </div>
       </section>
     </VoiceContext.Provider>
-  );
-}
-
-function SendIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M5 12h14M13 6l6 6-6 6" />
-    </svg>
-  );
-}
-function StopIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <rect x="6" y="6" width="12" height="12" rx="2" />
-    </svg>
-  );
-}
-function PlayIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M8 5v14l11-7z" />
-    </svg>
   );
 }

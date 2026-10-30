@@ -18,7 +18,7 @@ export function AppNav({ user }: { user: { name: string; isDemo: boolean } }) {
     <header className="sticky top-0 z-30 border-b border-line bg-bg/85 backdrop-blur">
       {user.isDemo && (
         <div className="bg-accent px-4 py-1.5 text-center text-xs text-accent-fg">
-          Guest workspace: hold your dictation key (or type) and explain a topic. Samjha finds what you missed.
+          Guest workspace: hold your dictation key and explain a topic. Samjha finds what you missed.
         </div>
       )}
       <nav className="mx-auto flex max-w-5xl items-center gap-1 overflow-x-auto px-4 py-2">

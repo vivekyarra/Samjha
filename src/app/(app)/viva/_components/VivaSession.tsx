@@ -272,7 +272,7 @@ export function VivaSession({ initial }: { initial: VivaView }) {
         </select>
         <button className="btn-primary ml-auto" onClick={() => void end()} disabled={busy}>End viva</button>
       </div>
-      <p className="muted">Answer in the Voice Box below. Speak naturally; it submits when you pause.</p>
+      <p className="muted">Answer out loud. Speak naturally; it submits when you pause.</p>
     </div>
   );
 }

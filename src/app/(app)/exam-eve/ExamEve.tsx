@@ -59,7 +59,6 @@ export function ExamEve({ subjects, initialSubjectId, initialBudget }: {
   const [step, setStep] = useState<Step>("loading");
   const [buddyText, setBuddyText] = useState("");
   const [question, setQuestion] = useState<{ question: string; claimId: string | null } | null>(null);
-  const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
   const [notes, setNotes] = useState<string[]>([]);
   const [elapsed, setElapsed] = useState(0);
@@ -200,7 +199,7 @@ export function ExamEve({ subjects, initialSubjectId, initialBudget }: {
     const t = p.topics[i];
     covered.current = [...covered.current.slice(0, i), t];
     setIdx(i); idxRef.current = i;
-    setStepBoth("loading"); setBuddyText(""); setQuestion(null); setFeedback(""); setAnswer("");
+    setStepBoth("loading"); setBuddyText(""); setQuestion(null); setFeedback("");
     buddyDeadline.current = Date.now() + Math.max(20, allowed - CHECK_SEC) * 1000;
     answerDeadline.current = Number.POSITIVE_INFINITY;
     try {
@@ -239,7 +238,6 @@ export function ExamEve({ subjects, initialSubjectId, initialBudget }: {
     const t = p.topics[idxRef.current];
     voice.stop();
     setStepBoth("grading");
-    setAnswer(text);
     let fb = "Thanks. Moving on.";
     try {
       const res = await fetch("/api/exam-eve/check", {
@@ -461,10 +459,7 @@ export function ExamEve({ subjects, initialSubjectId, initialBudget }: {
           <div className="card space-y-3 border-2 border-accent">
             <p className="text-lg font-medium">{question ? question.question : "Getting a quick question…"}</p>
             {step === "question" && question && (
-              <form className="flex gap-2" onSubmit={(e) => { e.preventDefault(); void submitAnswer(answer); }}>
-                <input className="input" value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder="Say or type your answer" aria-label="Your answer" />
-                <button className="btn-primary" disabled={!answer.trim()}>Check</button>
-              </form>
+              <p className="muted">Answer out loud. Samjha checks it when you pause.</p>
             )}
             {step === "grading" && <p className="muted">Checking…</p>}
             {step === "feedback" && <p className="text-lg">{feedback}</p>}

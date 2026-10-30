@@ -153,7 +153,7 @@ export function TopicPanel({
       )}
 
       {t.claims.length === 0 ? (
-        <p className="muted">No claims yet. Add notes for this topic, or type a claim below.</p>
+        <p className="muted">No claims yet. Add notes for this topic, or add a claim below.</p>
       ) : (
         <ol className="space-y-2">
           {t.claims.map((c, i) => {

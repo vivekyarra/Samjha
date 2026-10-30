@@ -22,7 +22,6 @@ export function StyleClient({ initialPrefs, subjects, defaults }: { initialPrefs
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [line, setLine] = useState<string>("");
-  const [text, setText] = useState("");
   const [confirmReset, setConfirmReset] = useState(false);
 
   const say = useCallback((s: string) => {
@@ -155,20 +154,8 @@ export function StyleClient({ initialPrefs, subjects, defaults }: { initialPrefs
 
       <section className="card flex flex-col gap-3" aria-labelledby="add-h">
         <h2 id="add-h" className="h2">Add a preference</h2>
-        <p className="muted">Speak into the Voice Box, or type here. For one subject, start with its name: &quot;for {subjects[0]?.name ?? "physics"}, always formula-first&quot;.</p>
-        <form
-          className="flex flex-col gap-2 sm:flex-row"
-          onSubmit={async (e) => {
-            e.preventDefault();
-            if (!text.trim()) return;
-            if (await runCommand(text)) setText("");
-          }}
-        >
-          <input className="input" value={text} onChange={(e) => setText(e.target.value)} placeholder="e.g. use gaming analogies" aria-label="Style preference" />
-          <button className="btn-primary shrink-0" disabled={busy === "command" || !text.trim()}>
-            {busy === "command" ? <Spinner label="Saving" size={16} /> : "Save"}
-          </button>
-        </form>
+        <p className="muted">Just say it. For one subject, start with its name: &quot;for {subjects[0]?.name ?? "physics"}, always formula-first&quot;.</p>
+        {busy === "command" && <Spinner label="Saving" size={16} />}
         <div className="flex flex-wrap gap-2">
           {EXAMPLES.map((ex) => (
             <button key={ex} type="button" className="btn-ghost px-3 py-1.5 text-xs" disabled={!!busy} onClick={() => runCommand(ex)}>
